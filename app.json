@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Numbers",
+    "slug": "Numbers",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/main.png",
+    "userInterfaceStyle": "auto",
+    "splash": {
+      "image": "./assets/icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F3F3F3"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icons/adaptive.png",
+        "backgroundColor": "#ffffff"
+      }
+    }
+  }
+}
