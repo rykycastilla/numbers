@@ -68,8 +68,6 @@ const ITEMS_GROUP_SIZE = `${ SAMPLE_ITEM_SIZE } * 3 + ${ MARGIN } * 2`
 const styles = StyleSheet.create( {
   container: {
     width: `100vw - ${ MARGIN } * 2` as unknown as number,
-    marginLeft: MARGIN as unknown as number,
-    marginBottom: MARGIN as unknown as number,
     alignItems: 'center',
   },
   itemsGroup: {

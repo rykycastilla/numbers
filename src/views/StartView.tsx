@@ -5,6 +5,8 @@ import { BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/st
 import { StyleSheet, Text } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
 
+import StartButton from '../components/StartButton'
+
 const WelcomeMessage = (): ReactElement => {
   return (
     <Text style={ useVP( styles.welcomeMessage ) }>
@@ -19,12 +21,16 @@ const StartView = (): ReactElement => {
     <View style={ styles.view }>
       <WelcomeMessage />
       <AnimatedSample />
+      <StartButton />
     </View>
   )
 }
 
 const styles = StyleSheet.create( {
-  view: { justifyContent: 'space-between' },
+  view: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   welcomeMessage: {
     marginTop: MARGIN as unknown as number,
     marginLeft: MARGIN as unknown as number,
