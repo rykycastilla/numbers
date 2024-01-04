@@ -1,11 +1,11 @@
 import AnimatedSample from '../components/AnimatedSample'
+import CreateSwitchable from 'react-component-switcher'
 import React, { ReactElement } from 'react'
+import StartButton from '../components/StartButton'
 import View from '../components/View'
 import { BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
 import { StyleSheet, Text } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
-
-import StartButton from '../components/StartButton'
 
 const WelcomeMessage = (): ReactElement => {
   return (
@@ -45,4 +45,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default StartView
+export default CreateSwitchable( StartView )

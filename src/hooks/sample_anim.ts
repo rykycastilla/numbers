@@ -1,12 +1,11 @@
+import AnimatedInterpolation from '../types/AnimatedInterpolation'
 import { Animated } from 'react-native'
 import { MARGIN } from '../data/styles.json'
 import { SAMPLE_ITEM_SIZE } from '../data/constants.json'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useVP } from 'react-native-viewport-provider'
 
-type AnimatedValue = Animated.AnimatedInterpolation<string|number>
-
-function useSampleAnim( animated:boolean ): AnimatedValue {
+function useSampleAnim( animated:boolean ): AnimatedInterpolation {
   const duration = 500,
     lapse = 1500,
     useNativeDriver = false
@@ -36,7 +35,7 @@ function useSampleAnim( animated:boolean ): AnimatedValue {
     if( animated ) { move() }
   }, [] )
   // Parsing position values
-  const displacementX: AnimatedValue = animationRef.interpolate( {
+  const displacementX: AnimatedInterpolation = animationRef.interpolate( {
     inputRange: [ 0, 1 ],
     outputRange: [ 0, left ],
   } )
