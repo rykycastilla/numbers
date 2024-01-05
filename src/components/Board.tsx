@@ -1,21 +1,28 @@
-import CellCount from '../types/CellCount'
 import Item from './Item'
 import itemColors from '../data/item_colors.json'
 import React, { ReactElement } from 'react'
-import resolveAsMatrix from '../functions/resolve_as_matrix'
-import { BOARD_GRID_SIZE } from '../data/constants.json'
+import useItemsManager from '../hooks/items_manager'
+import useRequestMoveCallback from '../hooks/request_move_callback'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
 
+/*
+
+"requestMove" is passed to every item, then the items can make a request to the board, it check if the
+item can be movedand and apply the changes
+
+*/
+
 const ItemsList = (): ReactElement => {
+  const [ items, go ] = useItemsManager( itemColors )  // Getting items and its motion function
+  const requestMove = useRequestMoveCallback( items, go )  // Building movement request
   const list: ReactElement[] = []
   // Printing every item
-  for( let _this = 0; _this < itemColors.length; _this++ ) {
-    const color: string = itemColors[ _this ],
-      tag: number = _this + 1
-    const { x, y } = resolveAsMatrix( _this, BOARD_GRID_SIZE )  // calculating coordinates
-    const item = <Item tag={ tag } color={ color } x={ x as CellCount } y={ y as CellCount } />
+  for( const itemData of items ) {
+    const { tag, x, y, color } = itemData
+    const item =
+      <Item key={ tag } tag={ tag } color={ color } x={ x } y={ y } requestMove={ requestMove } />
     list.push( item )
   }
   return <>{ list }</>

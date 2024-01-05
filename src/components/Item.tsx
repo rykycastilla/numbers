@@ -1,27 +1,30 @@
-import CellCount from '../types/CellCount'
 import React, { ReactElement } from 'react'
-import useAxisPosition from '../hooks/axis_position'
+import useAnimatedPosition from '../hooks/animated_position'
 import { Animated, Pressable, StyleSheet, Text } from 'react-native'
 import { BASE_LIGHT_COLOR, FONT_SIZE } from '../data/styles.json'
 import { ITEM_SIZE } from '../data/constants.json'
+import { RequestMoveCallback } from '../hooks/request_move_callback'
 import { useVP } from 'react-native-viewport-provider'
 
 interface ItemProps {
   tag: number,
   color: string,
-  x: CellCount,
-  y: CellCount,
+  x: number,
+  y: number,
+  requestMove: RequestMoveCallback,
 }
 
 // Items of the game board
 const Item = ( props:ItemProps ): ReactElement => {
-  const { tag, color:backgroundColor, x, y } = props
-  const top = useAxisPosition( y )
-  const left = useAxisPosition( x )
-  const position = { top, left }
+  const { tag, color:backgroundColor, x, y, requestMove } = props
+  // Calculating position
+  const translateX = useAnimatedPosition( x )
+  const translateY = useAnimatedPosition( y )
+  // Using position
+  const position = { transform: [ { translateX }, { translateY } ] }
   return (
     <Animated.View style={ useVP( [ styles.item, { backgroundColor }, position ] ) }>
-      <Pressable style={ styles.touchableArea }>
+      <Pressable style={ styles.touchableArea } onPress={ () => requestMove( tag ) }>
         <Text style={ useVP( styles.tag ) }>{ tag }</Text>
       </Pressable>
     </Animated.View>
