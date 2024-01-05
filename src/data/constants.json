@@ -1,3 +1,5 @@
 {
-  "SAMPLE_ITEM_SIZE": "15.83vw"
+  "SAMPLE_ITEM_SIZE": "15.83vw",
+  "ITEM_SIZE": "18.89vw",
+  "BOARD_GRID_SIZE": 4
 }

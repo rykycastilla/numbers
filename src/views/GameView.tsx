@@ -1,3 +1,5 @@
+import Board from '../components/Board'
+import GameContainer from '../components/GameContainer'
 import React, { ReactElement } from 'react'
 import useAppState from '../hooks/app_state'
 import useUnloggedDisplacement from '../hooks/unlogged_displacement'
@@ -9,7 +11,9 @@ const GameView = (): ReactElement => {
   const style = useUnloggedDisplacement( logged )
   return (
     <View style={ style }>
-      <></>
+      <GameContainer >
+        <Board />
+      </GameContainer>
     </View>
   )
 }
