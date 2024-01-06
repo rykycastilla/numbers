@@ -21,6 +21,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/adaptive.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.rykyce.numbers"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fb40292c-46e3-4fa8-ae06-dcbff3e4e496"
       }
     }
   }

@@ -1,16 +1,19 @@
+import OpacityStyle from '../types/OpacityStyle'
 import React, { ReactElement } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { Animated, StyleSheet } from 'react-native'
 
-type ReactElements = ReactElement | ReactElement[]
+interface GameContainerProps {
+  children: ReactElement | ReactElement[],
+  style: OpacityStyle,
+}
 
-interface GameContainerProps { children:ReactElements }
-
+// View containing elements of the main view (support start animation)
 const GameContainer = ( props:GameContainerProps ): ReactElement  => {
-  const { children } = props
+  const { children, style:opacityStyle } = props
   return (
-    <View style={ styles.container }>
+    <Animated.View style={ [ styles.container, opacityStyle ] }>
       { children }
-    </View>
+    </Animated.View>
   )
 }
 

@@ -1,17 +1,28 @@
 import Board from '../components/Board'
 import GameContainer from '../components/GameContainer'
-import React, { ReactElement } from 'react'
+import Opacity from '../enums/Opacity'
+import React, { ReactElement, useEffect } from 'react'
 import useAppState from '../hooks/app_state'
+import useFadeAnimation from '../hooks/fade_animation'
 import useUnloggedDisplacement from '../hooks/unlogged_displacement'
 import View from '../components/View'
+import { GAME_VIEW_DISPLACEMENT_DURATION } from '../data/constants.json'
 
 // Main view of the game
 const GameView = (): ReactElement => {
   const { logged } = useAppState()
-  const style = useUnloggedDisplacement( logged )
+  const style = useUnloggedDisplacement( logged, GAME_VIEW_DISPLACEMENT_DURATION )  // Login animation
+  const { startFade, opacityStyle } = useFadeAnimation( 600 )  // Start animation
+  // Starting game
+  useEffect( () => {
+    if( !logged ) { return }
+    setTimeout( () => {
+      startFade( Opacity.SHOW )  // Using start animation
+    }, GAME_VIEW_DISPLACEMENT_DURATION )  // Waiting the login animation end to start the game
+  }, [ logged ] )
   return (
     <View style={ style }>
-      <GameContainer >
+      <GameContainer style={ opacityStyle } >
         <Board />
       </GameContainer>
     </View>

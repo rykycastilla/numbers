@@ -9,7 +9,7 @@ interface UnloggedDisplacementStyle {
 }
 
 // Show the view from the right to log in (whow automatically if is logged by default)
-function useUnloggedDisplacement( logged:boolean ): UnloggedDisplacementStyle {
+function useUnloggedDisplacement( logged:boolean, duration:number ): UnloggedDisplacementStyle {
   const { width } = useDimensions()
   const initLoggedState: boolean = useMemo( () => logged, [] )  // Saving first login value
   const left: number = initLoggedState ? 0 : width
@@ -19,7 +19,6 @@ function useUnloggedDisplacement( logged:boolean ): UnloggedDisplacementStyle {
   // animation handler
   const move = useCallback( () => {
     const toValue = 1,
-      duration = 300,
       useNativeDriver = false
     const animation = Animated.timing( animRef, { toValue, duration, useNativeDriver } )
     animation.start()
