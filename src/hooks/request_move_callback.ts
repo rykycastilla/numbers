@@ -1,6 +1,7 @@
 import checkOutOfBoard from '../functions/check_out_of_board'
 import Direction from '../enums/Direction'
 import Item from '../classes/Item'
+import MovementFunction from '../types/MovementFunction'
 import PausableState from '../classes/PausableState'
 import sides from '../interfaces/sides'
 import { GoFunction } from './items_manager'
@@ -16,7 +17,15 @@ interface CoordinatesIndex {
 // The request is invalid when the system is paused (another move request is being executed)
 const gameSystem = new PausableState()
 
-async function requestMove( items:Item[], go:GoFunction, targetTag:number ) {
+interface RequestMoveParams {
+  items: Item[],
+  go: GoFunction,
+  targetTag: number,
+  impossibleFeedback: MovementFunction,
+}
+
+async function requestMove( params:RequestMoveParams ) {
+  const { items, go, targetTag, impossibleFeedback } = params
   // Checking if a new request is valid and pausing system
   if( !gameSystem.running ) { return }
   gameSystem.pause()
@@ -48,6 +57,7 @@ async function requestMove( items:Item[], go:GoFunction, targetTag:number ) {
   }
   // There is not a blank space around
   if( !blankSpaceDirection ) {
+    await impossibleFeedback()
     gameSystem.play()
     return
   }
@@ -56,13 +66,13 @@ async function requestMove( items:Item[], go:GoFunction, targetTag:number ) {
   gameSystem.play()
 }
 
-type RequestMoveCallback = ( targetTag:number ) => Promise<void>
+type RequestMoveCallback = ( targetTag:number, impossibleFeedback:MovementFunction ) => Promise<void>
 
 // Returns a function to request a move with it (passing the tag of the item to move)
 function useRequestMoveCallback( items:Item[], go:GoFunction ): RequestMoveCallback {
   // Creating a React Hook with the function
-  const requestMoveCallback: RequestMoveCallback = useCallback( async( targetTag:number ) => {
-    await requestMove( items, go, targetTag )
+  const requestMoveCallback: RequestMoveCallback = useCallback( async( targetTag:number, impossibleFeedback:MovementFunction ) => {
+    await requestMove( { items, go, targetTag, impossibleFeedback } )
   }, [ items ] )
   return requestMoveCallback
 }

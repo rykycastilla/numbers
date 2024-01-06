@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import useAnimatedPosition from '../hooks/animated_position'
+import useShake from '../hooks/shake'
 import { Animated, Pressable, StyleSheet, Text } from 'react-native'
 import { BASE_LIGHT_COLOR, FONT_SIZE } from '../data/styles.json'
 import { ITEM_SIZE } from '../data/constants.json'
@@ -20,11 +21,14 @@ const Item = ( props:ItemProps ): ReactElement => {
   // Calculating position
   const translateX = useAnimatedPosition( x )
   const translateY = useAnimatedPosition( y )
-  // Using position
-  const position = { transform: [ { translateX }, { translateY } ] }
+  // Using Shake as Impossible Feedback
+  const { shake, translate } = useShake()
+  const shakePosition = { translateX: translate },
+    transform = [ { translateX }, { translateY }, shakePosition ],
+    position = { transform }
   return (
     <Animated.View style={ useVP( [ styles.item, { backgroundColor }, position ] ) }>
-      <Pressable style={ styles.touchableArea } onPress={ () => requestMove( tag ) }>
+      <Pressable style={ styles.touchableArea } onPress={ () => requestMove( tag, shake ) }>
         <Text style={ useVP( styles.tag ) }>{ tag }</Text>
       </Pressable>
     </Animated.View>
