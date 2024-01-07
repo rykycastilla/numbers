@@ -28,12 +28,17 @@ const ItemsList = (): ReactElement => {
   return <>{ list }</>
 }
 
-const Board = (): ReactElement => {
+interface BoardProps { play:boolean }
+
+const Board = ( props:BoardProps ): ReactElement => {
+  const { play } = props
   return (
     <View style={ useVP( styles.parentContainer ) }>
       <View style={ useVP( styles.childContainer ) }>
         <ItemsList />
       </View>
+      { /* Is used a wall to stop interaction with the board when the game is paused */ }
+      { play ? <></> : <View style={ styles.pauseWall } /> }
     </View>
   )
 }
@@ -50,7 +55,13 @@ const styles = StyleSheet.create( {
     height: CHILD_CONTAINER_SIZE as unknown as number,
     marginTop: MARGIN as unknown as number,
     marginLeft: MARGIN as unknown as number,
-  }
+  },
+  pauseWall: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    backgroundColor: 'rgba( 0, 0, 0, 0 )',
+  },
 } )
 
 export default Board

@@ -1,6 +1,8 @@
 import Board from '../components/Board'
 import GameContainer from '../components/GameContainer'
+import HeaderContainer from '../components/HeaderContainer'
 import Opacity from '../enums/Opacity'
+import PauseButton from '../components/PauseButton'
 import React, { ReactElement, useEffect, useState } from 'react'
 import Timer from '../components/Timer'
 import useAppState from '../hooks/app_state'
@@ -26,7 +28,10 @@ const GameView = (): ReactElement => {
   return (
     <View style={ style }>
       <GameContainer style={ opacityStyle } >
-        <Board />
+        <HeaderContainer>
+          <PauseButton play={ gameRunning } setPlay={ setGameRunning } />
+        </HeaderContainer>
+        <Board play={ gameRunning } />
         <Timer count={ gameRunning } />
       </GameContainer>
     </View>
