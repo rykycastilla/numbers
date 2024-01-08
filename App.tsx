@@ -6,6 +6,7 @@ import StartView from './src/views/StartView'
 import useAppState, { AppState, AppStateProvider } from './src/hooks/app_state'
 import useSplashScreen from './src/hooks/splash_screen'
 import useStorageState from './src/hooks/storage_state'
+import useTimer from './src/hooks/timer'
 import ViewportProvider from 'react-native-viewport-provider'
 import { BASE_LIGHT_COLOR } from './src/data/styles.json'
 import { LOGGED_KEY } from './src/data/storage_keys.json'
@@ -36,7 +37,8 @@ const App = (): ReactElement | null => {
   const { loaded, onLayout } = useSplashScreen( async() => {
     await load( loggedPromise )
   } )
-  const value: AppState = { logged, setLogged }
+  const [ timer, setTimer ] = useTimer()  // Creating timer
+  const value: AppState = { logged, setLogged, timer, setTimer }
   if( !loaded ) { return null }
   return (
     <AppStateProvider value={ value }>

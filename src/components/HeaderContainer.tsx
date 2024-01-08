@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react'
+import ReactElements from '../types/ReactElements'
 import { GAME_BUTTON_SIZE } from '../data/constants.json'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
-
-type ReactElements = ReactElement | ReactElement[]
 
 interface HeaderContainerProps { children:ReactElements }
 

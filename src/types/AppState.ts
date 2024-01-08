@@ -5,6 +5,8 @@ import ReactSetter from './ReactSetter'
 interface AppState {
   logged: boolean,
   setLogged: ReactSetter<boolean>,
+  timer: string,
+  setTimer: ReactSetter<number>,
 }
 
 export default AppState

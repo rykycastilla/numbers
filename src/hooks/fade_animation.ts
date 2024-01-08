@@ -29,3 +29,4 @@ function useFadeAnimation( duration:number ): FadeAnimationResult {
 }
 
 export default useFadeAnimation
+export { FadeAnimationFunction }

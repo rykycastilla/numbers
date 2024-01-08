@@ -1,9 +1,10 @@
 import OpacityStyle from '../types/OpacityStyle'
 import React, { ReactElement } from 'react'
+import ReactElements from '../types/ReactElements'
 import { Animated, StyleSheet } from 'react-native'
 
 interface GameContainerProps {
-  children: ReactElement | ReactElement[],
+  children: ReactElements,
   style: OpacityStyle,
 }
 

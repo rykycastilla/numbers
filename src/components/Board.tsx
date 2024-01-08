@@ -1,8 +1,8 @@
 import Item from './Item'
-import itemColors from '../data/item_colors.json'
+import ItemData from '../classes/Item'
 import React, { ReactElement } from 'react'
-import useItemsManager from '../hooks/items_manager'
 import useRequestMoveCallback from '../hooks/request_move_callback'
+import { GoFunction } from '../hooks/items_manager'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
@@ -14,28 +14,39 @@ item can be movedand and apply the changes
 
 */
 
-const ItemsList = (): ReactElement => {
-  const [ items, go ] = useItemsManager( itemColors )  // Getting items and its motion function
+interface ItemsListProps {
+  items: ItemData[],
+  go: GoFunction,
+}
+
+const ItemsList = ( props:ItemsListProps ): ReactElement => {
+  const { items, go } = props
   const requestMove = useRequestMoveCallback( items, go )  // Building movement request
   const list: ReactElement[] = []
   // Printing every item
   for( const itemData of items ) {
     const { tag, x, y, color } = itemData
     const item =
-      <Item key={ tag } tag={ tag } color={ color } x={ x } y={ y } requestMove={ requestMove } />
+      <Item
+        key={ tag }
+        tag={ tag }
+        color={ color }
+        x={ x }
+        y={ y }
+        requestMove={ requestMove } />
     list.push( item )
   }
   return <>{ list }</>
 }
 
-interface BoardProps { play:boolean }
+interface BoardProps extends ItemsListProps { play:boolean }
 
 const Board = ( props:BoardProps ): ReactElement => {
-  const { play } = props
+  const { play, items, go } = props
   return (
     <View style={ useVP( styles.parentContainer ) }>
       <View style={ useVP( styles.childContainer ) }>
-        <ItemsList />
+        <ItemsList items={ items } go={ go } />
       </View>
       { /* Is used a wall to stop interaction with the board when the game is paused */ }
       { play ? <></> : <View style={ styles.pauseWall } /> }

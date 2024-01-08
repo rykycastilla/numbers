@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import ReactSetter from '../types/ReactSetter'
-import timerFormat from '../functions/timer_format'
+import useAppState from '../hooks/app_state'
 import { BASE_DARK_COLOR, FONT_SIZE, MARGIN } from '../data/styles.json'
 import { StyleSheet, Text } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
@@ -46,12 +46,11 @@ interface TimerProps { count:boolean }
 
 const Timer = ( props:TimerProps ): ReactElement => {
   const { count } = props
-  const [ time, setTime ] = useState( 0 )
+  const { timer, setTimer } = useAppState()
   const [ timerId, setTimerId ] = useState<Timeout|null>( null )  // id of the loop used to increase the timer value
-  const startTimer = useStartTimer( setTime )  // Function to start the timer again
+  const startTimer = useStartTimer( setTimer )  // Function to start the timer again
   // Pause the timer based on "count" value
   useTimerState( { count, startTimer, setTimerId, timerId } )
-  const timer: string = timerFormat( time )  // Using '00:00:00' format
   return <Text style={ useVP( styles.timer ) }>{ timer }</Text>
 }
 

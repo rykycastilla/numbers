@@ -1,7 +1,4 @@
-interface Coordinates {
-  x: number,
-  y: number,
-}
+import Coordinates from '../types/Coordinates'
 
 // Convert Natural numbers to matrix coordinates
 function resolveAsMatrix( num:number, topX:number ): Coordinates {

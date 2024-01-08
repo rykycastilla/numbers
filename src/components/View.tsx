@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
+import ReactElements from '../types/ReactElements'
 import { Animated, StyleSheet } from 'react-native'
 import { BASE_DARK_COLOR, BASE_LIGHT_COLOR } from '../data/styles.json'
 
 interface ViewProps { 
-  children: ReactElement | ReactElement[],
+  children: ReactElements,
   style?: object,
 }
 
