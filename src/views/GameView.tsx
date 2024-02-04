@@ -1,4 +1,5 @@
 import Board from '../components/Board'
+import Card from '../components/Card'
 import GameContainer from '../components/GameContainer'
 import HeaderContainer from '../components/HeaderContainer'
 import itemColors from '../data/item_colors.json'
@@ -32,6 +33,7 @@ const GameView = (): ReactElement => {
         </HeaderContainer>
         <Board play={ gameRunning } items={ items } go={ go } />
         <Timer count={ gameRunning } />
+        <Card hide={ Card.hide } />
       </GameContainer>
     </View>
   )
