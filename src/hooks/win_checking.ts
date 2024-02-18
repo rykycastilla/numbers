@@ -7,11 +7,11 @@ import { useEffect } from 'react'
 
 // Checks the order of the items to determines if you won
 function useWinChecking( items:Item[], random:MovementFunction ) {
-  const { timer, time } = useAppState()
+  const { timer, time, setGameRunning } = useAppState()
   useEffect( () => {
     const boardOrganized: boolean = ItemsManager.isOrganized( items )
     // Win with the correct order
-    if( boardOrganized ) { win( timer, time, random ) }
+    if( boardOrganized ) { win( timer, time, random, setGameRunning ) }
   }, [ items ] )
 }
 

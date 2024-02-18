@@ -25,10 +25,15 @@ class Storage {
     return data
   }
 
-  // Save value in perisstent storage
+  // Save value in persistent storage
   public async set<T>( storageKey:StorageKey<T>, newValue:T ) {
     const encodedData: string = JSON.stringify( newValue )  // Encoding to JSON
     await AsyncStorage.setItem( storageKey.token, encodedData )  // Saving
+  }
+
+  // Remove an item from the persistent storage
+  public async remove<T>( storageKey:StorageKey<T> ) {
+    await AsyncStorage.removeItem( storageKey.token )
   }
 
 }

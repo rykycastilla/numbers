@@ -1,9 +1,10 @@
 import FunctionVoid from './src/types/FunctionVoid'
 import GameView from './src/views/GameView'
 import load from './src/functions/load'
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import StartView from './src/views/StartView'
 import useAppState, { AppState, AppStateProvider } from './src/hooks/app_state'
+import useGameProgress from './src/hooks/game_progress'
 import useSplashScreen from './src/hooks/splash_screen'
 import useStorageState from './src/hooks/storage_state'
 import useTimer from './src/hooks/timer'
@@ -34,11 +35,13 @@ const AppContent = ( props:AppContentProps ): ReactElement => {
 // App config
 const App = (): ReactElement | null => {
   const [ logged, setLogged, loggedPromise ] = useStorageState( false, LOGGED_KEY )
-  const { loaded, onLayout } = useSplashScreen( async() => {
-    await load( loggedPromise )
-  } )
   const [ timer, setTimer, time ] = useTimer()  // Creating timer
-  const value: AppState = { logged, setLogged, timer, setTimer, time }
+  const { loadProgress, manager, items } = useGameProgress( setTimer )
+  const { loaded, onLayout } = useSplashScreen( async() => {
+    await load( loggedPromise, loadProgress )
+  } )
+  const [ gameRunning, setGameRunning ] = useState( false )
+  const value: AppState = { logged, setLogged, timer, setTimer, time, manager, items, gameRunning, setGameRunning }
   if( !loaded ) { return null }
   return (
     <AppStateProvider value={ value }>

@@ -7,7 +7,9 @@ import randomInt from '../functions/random_int'
 import ReactSetter from '../types/ReactSetter'
 import resolveAsMatrix from '../functions/resolve_as_matrix'
 import sides from '../interfaces/sides'
+import wait from '../functions/wait'
 import { BOARD_GRID_SIZE } from '../data/constants.json'
+import { ITEM_DISPLACEMENT_DURATION } from '../data/constants.json'
 
 type AdjacentItem = [ Item, Direction ]
 
@@ -18,7 +20,7 @@ class ItemsManager {
 
   constructor(
     colors: string[],
-    private readonly setList: ReactSetter<Item[]>
+    private readonly setList: ReactSetter<Item[]>,
   ) {
     // Building items (them are sorted by default)
     for( let _this = 0; _this < colors.length; _this++ ) {
@@ -35,6 +37,18 @@ class ItemsManager {
 
   private updateState() {
     this.setList( [ ...this.list ] )
+  }
+
+  // Assign an specific order to the items
+  private useOrder( items:Item[] ) {
+    for( let _this = 0; _this < this.list.length; _this++ ) {
+      // Using position of the reference in the current item
+      const boardItem: Item = this.list[ _this ],
+        referenceItem: Item = items[ _this ]
+      boardItem.x = referenceItem.x
+      boardItem.y = referenceItem.y
+    }
+    this.updateState()
   }
 
   // Move the item with the "tag" to the specified direction
@@ -136,6 +150,12 @@ class ItemsManager {
       }
     }
     return orderIsCorrect
+  }
+
+  // Used to assign an specific order to an "ItemsManager" instance (treated like a promise)
+  public static async useOrder( manager:ItemsManager, items:Item[] ) {
+    manager.useOrder( items )
+    await wait( ITEM_DISPLACEMENT_DURATION )
   }
 
 }
