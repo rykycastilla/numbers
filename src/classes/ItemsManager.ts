@@ -13,6 +13,7 @@ type AdjacentItem = [ Item, Direction ]
 
 class ItemsManager {
 
+  private static correctOrder: Coordinates[] = []  // This array was created to save the default order of the board
   private readonly list: Item[] = []
 
   constructor(
@@ -25,6 +26,8 @@ class ItemsManager {
       const { x, y } = resolveAsMatrix( _this, BOARD_GRID_SIZE )
       const tag: number = _this + 1
       const newItem = new Item( tag, x, y, color )
+      // Saving default order
+      ItemsManager.correctOrder[ _this ] = { x, y }
       this.list.push( newItem )
     }
     this.randomSort()
@@ -113,7 +116,26 @@ class ItemsManager {
     for( let count = 1; count <= randomMovements; count++ ) {
       this.randomMove()
     }
-    this.updateState()  // Updating state
+    // Checking if the random movements organized the board
+    const boardOrganized: boolean = ItemsManager.isOrganized( this.list )
+    if( boardOrganized ) { this.randomSort() }  // Try again
+    else { this.updateState() }  // Updating state (applying changes)
+  }
+
+  // Returns "true" if the board is organized (every item is at its default position)
+  public static isOrganized( list:Item[] ): boolean {
+    let orderIsCorrect = true
+    for( let _this = 0; _this < list.length; _this++ ) {
+      const item: Item = list[ _this ],
+        defaultOrder: Coordinates = ItemsManager.correctOrder[ _this ]
+      // Checking if every item is at its default position
+      const itemOrderIsCorrect: boolean = ( item.x === defaultOrder.x ) && ( item.y === defaultOrder.y )
+      if( !itemOrderIsCorrect ) {
+        orderIsCorrect = false
+        break
+      }
+    }
+    return orderIsCorrect
   }
 
 }

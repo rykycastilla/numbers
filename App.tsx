@@ -37,8 +37,8 @@ const App = (): ReactElement | null => {
   const { loaded, onLayout } = useSplashScreen( async() => {
     await load( loggedPromise )
   } )
-  const [ timer, setTimer ] = useTimer()  // Creating timer
-  const value: AppState = { logged, setLogged, timer, setTimer }
+  const [ timer, setTimer, time ] = useTimer()  // Creating timer
+  const value: AppState = { logged, setLogged, timer, setTimer, time }
   if( !loaded ) { return null }
   return (
     <AppStateProvider value={ value }>

@@ -6,6 +6,7 @@ interface AppState {
   logged: boolean,
   setLogged: ReactSetter<boolean>,
   timer: string,
+  time: number,
   setTimer: ReactSetter<number>,
 }
 

@@ -1,7 +1,9 @@
 import Item from './Item'
 import ItemData from '../classes/Item'
+import MovementFunction from '../types/MovementFunction'
 import React, { ReactElement } from 'react'
 import useRequestMoveCallback from '../hooks/request_move_callback'
+import useWinChecking from '../hooks/win_checking'
 import { GoFunction } from '../hooks/items_manager'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
@@ -39,10 +41,14 @@ const ItemsList = ( props:ItemsListProps ): ReactElement => {
   return <>{ list }</>
 }
 
-interface BoardProps extends ItemsListProps { play:boolean }
+interface BoardProps extends ItemsListProps {
+  play: boolean,
+  random: MovementFunction,
+}
 
 const Board = ( props:BoardProps ): ReactElement => {
-  const { play, items, go } = props
+  const { play, items, go, random } = props
+  useWinChecking( items, random )  // Used to win
   return (
     <View style={ useVP( styles.parentContainer ) }>
       <View style={ useVP( styles.childContainer ) }>

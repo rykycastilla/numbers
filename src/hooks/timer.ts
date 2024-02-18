@@ -3,10 +3,10 @@ import timerFormat from '../functions/timer_format'
 import { useState } from 'react'
 
 // Hook to transform an integer number to the format 'hh:mm:ss'
-function useTimer(): [ string, ReactSetter<number> ] {
+function useTimer(): [ string, ReactSetter<number>, number ] {
   const [ time, setTimer ] = useState( 0 )
   const timer: string = timerFormat( time )
-  return [ timer, setTimer ]
+  return [ timer, setTimer, time ]
 }
 
 export default useTimer
