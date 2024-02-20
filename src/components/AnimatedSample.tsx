@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import sampleColors from '../data/sample_colors.json'
+import useLanguage from '../hooks/language'
 import useSampleAnim from '../hooks/sample_anim'
 import useSamplePosition from '../hooks/sample_position'
 import { Animated, StyleSheet, Text, View } from 'react-native'
@@ -55,11 +56,12 @@ const ItemsGroup = (): ReactElement => {
 }
 
 const AnimatedSample = (): ReactElement => {
+  const language = useLanguage()
   return (
     <View style={ useVP( styles.container ) }>
       <ItemsGroup />
-      <Text style={ useVP( styles.instructions ) }>Touch a card adjacent to the blank space to move it and sort the numbers</Text>
-    </View>
+      <Text style={ useVP( styles.instructions ) }>{ language.gameInstructions }</Text>
+    </View> 
   )
 }
 

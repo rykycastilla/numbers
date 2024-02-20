@@ -1,0 +1,11 @@
+{
+  "welcome": "Hello there! Welcome to ",
+  "welcomeDescription": ", a fantastic minigame to train your mind and your fast thinking capabilities",
+  "gameInstructions": "Touch a card adjacent to the blank space to move it and sort the numbers",
+  "start": "Start",
+  "restartWarning": "Do you want to restart the game?",
+  "winMessage": "Congratulations! You have won in",
+  "newRecord": "NEW RECORD!",
+  "cancel": "Cancel",
+  "accept": "Accept"
+}

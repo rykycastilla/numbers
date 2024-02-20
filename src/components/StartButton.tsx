@@ -1,14 +1,16 @@
 import React, { ReactElement } from 'react'
 import useAppState from '../hooks/app_state'
+import useLanguage from '../hooks/language'
 import { BASE_LIGHT_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN} from '../data/styles.json'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
 
 const StartButton = (): ReactElement => {
   const { setLogged } = useAppState()
+  const language = useLanguage()
   return (
     <TouchableOpacity style={ useVP( styles.button ) } onPress={ () => setLogged( true ) }>
-      <Text style={ useVP( styles.text ) }>Start</Text>
+      <Text style={ useVP( styles.text ) }>{ language.start }</Text>
     </TouchableOpacity>
   )
 }

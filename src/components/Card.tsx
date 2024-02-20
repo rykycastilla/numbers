@@ -4,6 +4,7 @@ import CreateSwitchable, { HideFunction, useHiding } from 'react-component-switc
 import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
 import useCardConfig from '../hooks/card_config'
+import useLanguage from '../hooks/language'
 import { BAR_LIGHT_COLOR, BASE_LIGHT_COLOR, BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
 import { FADE_DURATION } from '../data/constants.json'
 import { StatusBar } from 'expo-status-bar'
@@ -69,11 +70,12 @@ interface ButtonBoxProps {
 const ButtonBox = ( props:ButtonBoxProps ): ReactElement => {
   const { hide, action, isAlert } = props
   const acceptButtonSize: CardButtonType = isAlert ? CardButtonType.FULL : CardButtonType.MIDDLE
+  const language = useLanguage()
   return (
     <View style={ styles.buttonBox }>
       { /* Only show "Cancel Button" if it is not an alert card */ }
-      { isAlert ? <></> : <Button title="Cancel" solid={ false } action={ hide } size={ CardButtonType.MIDDLE } /> }
-      <Button title="Accept" solid={ true } size={ acceptButtonSize } action={ () => executeAndExit( hide, action ) } />
+      { isAlert ? <></> : <Button title={ language.cancel } solid={ false } action={ hide } size={ CardButtonType.MIDDLE } /> }
+      <Button title={ language.accept } solid={ true } size={ acceptButtonSize } action={ () => executeAndExit( hide, action ) } />
     </View>
   )
 }

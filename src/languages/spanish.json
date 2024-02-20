@@ -1,0 +1,11 @@
+{
+  "welcome": "¡Hola! Bienvenido a ",
+  "welcomeDescription": ", un fantástico minijuego para entrenar su mente y su capacidad de pensamiento rápido",
+  "gameInstructions": "Toque una tarjeta adyacente al espacio en blanco para moverla y organizar los números",
+  "start": "Comenzar",
+  "restartWarning": "¿Usted quiere reinicar su progreso?",
+  "winMessage": "Felicidades! Ha ganado en",
+  "newRecord": "¡NUEVO RECORD!",
+  "cancel": "Cancelar",
+  "accept": "Aceptar"
+}
