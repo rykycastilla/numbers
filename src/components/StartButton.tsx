@@ -17,7 +17,6 @@ const StartButton = (): ReactElement => {
 
 const styles = StyleSheet.create( {
   button: {
-    width: '26.53vw' as unknown as number,
     height: '10.14vw' as unknown as number,
     marginBottom: MARGIN as unknown as number,
     borderRadius: '3vw' as unknown as number,
@@ -26,6 +25,8 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   text: {
+    marginLeft: MARGIN as unknown as number,
+    marginRight: MARGIN as unknown as number,
     color: BASE_LIGHT_COLOR,
     fontSize: `${ FONT_SIZE } * 1.05` as unknown as number,
   },
