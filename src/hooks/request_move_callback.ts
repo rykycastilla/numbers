@@ -1,8 +1,11 @@
 import checkOutOfBoard from '../functions/check_out_of_board'
 import Direction from '../enums/Direction'
+import doublePopAction from '../../assets/audio/double_pop_action.mp3'
 import Item from '../classes/Item'
 import MovementFunction from '../types/MovementFunction'
 import PausableState from '../classes/PausableState'
+import playSound from '../functions/play_sound'
+import popAction from '../../assets/audio/pop_action.mp3'
 import sides from '../interfaces/sides'
 import { GoFunction } from './items_manager'
 import { useCallback } from 'react'
@@ -57,11 +60,13 @@ async function requestMove( params:RequestMoveParams ) {
   }
   // There is not a blank space around
   if( !blankSpaceDirection ) {
+    playSound( doublePopAction )  // Sound
     await impossibleFeedback()
     gameSystem.play()
     return
   }
   // There is a blank space around
+  playSound( popAction )  // sound
   await go( targetTag, blankSpaceDirection )  // Moving
   gameSystem.play()
 }
