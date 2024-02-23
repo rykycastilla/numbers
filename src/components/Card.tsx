@@ -3,6 +3,7 @@ import CardButtonType from '../enums/CardButtonType'
 import CreateSwitchable, { HideFunction, useHiding } from 'react-component-switcher'
 import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
+import useBackButton from '../hooks/back_button'
 import useCardConfig from '../hooks/card_config'
 import useLanguage from '../hooks/language'
 import { BAR_LIGHT_COLOR, BASE_LIGHT_COLOR, BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
@@ -95,6 +96,11 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
   const { text, importantText, action, isAlert } = callerProps
   const hiding = useHiding()
   const opacity = useCardConfig( hiding, FADE_DURATION )
+  // Handling Back Press
+  useBackButton( () => {
+    if( isAlert ) { executeAndExit( hide, action ) }
+    else { hide() }
+  } )
   return (
     <>
       <StatusBar backgroundColor={ BAR_LIGHT_COLOR } style="dark" />
