@@ -3,6 +3,10 @@
 ## Description
 This is a minigame to train your mind and your fast thinking capabilities. To win, you have to touch a card adjacent to the blank space to move it and sort the numbers.
 
+## Available Languages
+ - English
+ - Spanish
+
 ## Available Scripts
 
 In the project directory, you can run:
