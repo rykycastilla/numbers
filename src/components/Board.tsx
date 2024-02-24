@@ -1,8 +1,11 @@
+import doublePopAction from '../../assets/audio/double_pop_action.mp3'
 import Item from './Item'
 import ItemData from '../classes/Item'
 import MovementFunction from '../types/MovementFunction'
+import popAction from '../../assets/audio/pop_action.mp3'
 import React, { ReactElement } from 'react'
 import useRequestMoveCallback from '../hooks/request_move_callback'
+import useSound from '../hooks/sound'
 import useWinChecking from '../hooks/win_checking'
 import { GoFunction } from '../hooks/items_manager'
 import { MARGIN } from '../data/styles.json'
@@ -23,7 +26,10 @@ interface ItemsListProps {
 
 const ItemsList = ( props:ItemsListProps ): ReactElement => {
   const { items, go } = props
-  const requestMove = useRequestMoveCallback( items, go )  // Building movement request
+  const playPop = useSound( popAction )
+  const playDoublePop = useSound( doublePopAction )
+  const useRequestMoveCallbackArgs = { items, go, playFeedback:playPop, playImpossibleFeedback:playDoublePop }
+  const requestMove = useRequestMoveCallback( useRequestMoveCallbackArgs )  // Building movement request
   const list: ReactElement[] = []
   // Printing every item
   for( const itemData of items ) {

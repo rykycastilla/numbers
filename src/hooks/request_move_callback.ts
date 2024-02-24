@@ -1,11 +1,8 @@
 import checkOutOfBoard from '../functions/check_out_of_board'
 import Direction from '../enums/Direction'
-import doublePopAction from '../../assets/audio/double_pop_action.mp3'
 import Item from '../classes/Item'
 import MovementFunction from '../types/MovementFunction'
 import PausableState from '../classes/PausableState'
-import playSound from '../functions/play_sound'
-import popAction from '../../assets/audio/pop_action.mp3'
 import sides from '../interfaces/sides'
 import { GoFunction } from './items_manager'
 import { useCallback } from 'react'
@@ -25,10 +22,12 @@ interface RequestMoveParams {
   go: GoFunction,
   targetTag: number,
   impossibleFeedback: MovementFunction,
+  playFeedback: () => Promise<void>
+  playImpossibleFeedback: () => Promise<void>,
 }
 
 async function requestMove( params:RequestMoveParams ) {
-  const { items, go, targetTag, impossibleFeedback } = params
+  const { items, go, targetTag, impossibleFeedback, playFeedback, playImpossibleFeedback } = params
   // Checking if a new request is valid and pausing system
   if( !gameSystem.running ) { return }
   gameSystem.pause()
@@ -60,24 +59,32 @@ async function requestMove( params:RequestMoveParams ) {
   }
   // There is not a blank space around
   if( !blankSpaceDirection ) {
-    playSound( doublePopAction )  // Sound
+    playImpossibleFeedback()  // Sound
     await impossibleFeedback()
     gameSystem.play()
     return
   }
   // There is a blank space around
-  playSound( popAction )  // sound
+  playFeedback()  // sound
   await go( targetTag, blankSpaceDirection )  // Moving
   gameSystem.play()
 }
 
 type RequestMoveCallback = ( targetTag:number, impossibleFeedback:MovementFunction ) => Promise<void>
 
+interface UseRequestMoveCallbackParams {
+  items: Item[],
+  go: GoFunction,
+  playFeedback: () => Promise<void>
+  playImpossibleFeedback: () => Promise<void>,
+}
+
 // Returns a function to request a move with it (passing the tag of the item to move)
-function useRequestMoveCallback( items:Item[], go:GoFunction ): RequestMoveCallback {
+function useRequestMoveCallback( params:UseRequestMoveCallbackParams ): RequestMoveCallback {
+  const { items, go, playFeedback, playImpossibleFeedback } = params
   // Creating a React Hook with the function
   const requestMoveCallback: RequestMoveCallback = useCallback( async( targetTag:number, impossibleFeedback:MovementFunction ) => {
-    await requestMove( { items, go, targetTag, impossibleFeedback } )
+    await requestMove( { items, go, targetTag, impossibleFeedback, playFeedback, playImpossibleFeedback } )
   }, [ items ] )
   return requestMoveCallback
 }

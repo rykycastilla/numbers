@@ -41,7 +41,8 @@ const App = (): ReactElement | null => {
     await load( loggedPromise, loadProgress )
   } )
   const [ gameRunning, setGameRunning ] = useState( false )
-  const value: AppState = { logged, setLogged, timer, setTimer, time, manager, items, gameRunning, setGameRunning }
+  const value: AppState = { logged, setLogged, timer, setTimer, time, manager, items, gameRunning, setGameRunning,
+  }
   if( !loaded ) { return null }
   return (
     <AppStateProvider value={ value }>
