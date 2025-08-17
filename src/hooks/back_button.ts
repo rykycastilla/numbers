@@ -1,5 +1,5 @@
+import FunctionVoid from '../types/FunctionVoid'
 import { BackHandler } from 'react-native'
-import { FunctionVoid } from '../types'
 import { useEffect } from 'react'
 
 type BackCallback = ( exit:FunctionVoid ) => void

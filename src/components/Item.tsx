@@ -46,7 +46,7 @@ const styles = StyleSheet.create( {
     width: '100%',
     height: '100%',
     justifyContent: 'center',
-    alignItem: 'center',
+    alignItems: 'center',
   },
   tag: {
     color: BASE_LIGHT_COLOR,
