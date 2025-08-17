@@ -38,7 +38,7 @@ const styles = StyleSheet.create( {
     marginLeft: MARGIN as unknown as number,
     marginRight: MARGIN as unknown as number,
     color: BASE_DARK_COLOR,
-    fontSize: FONT_SIZE as unknown as number,
+    fontSize: FONT_SIZE,
     fontFamily: 'Comfortaa',
   },
   gameName: {

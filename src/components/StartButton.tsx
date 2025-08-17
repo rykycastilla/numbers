@@ -28,7 +28,7 @@ const styles = StyleSheet.create( {
     marginLeft: MARGIN as unknown as number,
     marginRight: MARGIN as unknown as number,
     color: BASE_LIGHT_COLOR,
-    fontSize: `${ FONT_SIZE } * 1.05` as unknown as number,
+    fontSize: FONT_SIZE * 1.05,
   },
 } )
 

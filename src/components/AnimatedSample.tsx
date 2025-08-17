@@ -85,7 +85,7 @@ const styles = StyleSheet.create( {
   instructions: {
     marginTop: MARGIN as unknown as number,
     color: BASE_DARK_COLOR,
-    fontSize: `${ FONT_SIZE } * 0.83` as unknown as number,
+    fontSize: FONT_SIZE * 0.83,
     fontFamily: 'Comfortaa-Bold',
     textAlign: 'center',
   },

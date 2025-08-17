@@ -50,7 +50,7 @@ const styles = StyleSheet.create( {
   },
   tag: {
     color: BASE_LIGHT_COLOR,
-    fontSize: `${ FONT_SIZE } * 1.53` as unknown as number,
+    fontSize: FONT_SIZE * 1.53,
     fontFamily: 'Comfortaa-Bold',
     textAlign: 'center',
   },

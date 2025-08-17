@@ -143,7 +143,7 @@ const styles = StyleSheet.create( {
     marginBottom: `${ MARGIN } * 2` as unknown as number,
     color: BASE_DARK_COLOR,
     fontFamily: 'Comfortaa',
-    fontSize: FONT_SIZE as unknown as number,
+    fontSize: FONT_SIZE,
   },
   importantMessage: {
     color: MAIN_LIGHT_COLOR,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create( {
     height: '100%',
     borderRadius: '2.5vw' as unknown as number,
     fontFamily: 'Comfortaa-Bold',
-    fontSize: `${ FONT_SIZE } * 1.05` as unknown as number,
+    fontSize: FONT_SIZE * 1.05,
     textAlign: 'center',
     textAlignVertical: 'center',
   },
