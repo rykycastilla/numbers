@@ -6,7 +6,7 @@ import React, { ReactElement } from 'react'
 import useBackButton from '../hooks/back_button'
 import useCardConfig from '../hooks/card_config'
 import useLanguage from '../hooks/language'
-import { BAR_LIGHT_COLOR, BASE_LIGHT_COLOR, BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
+import { BASE_LIGHT_COLOR, BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
 import { FADE_DURATION } from '../data/constants.json'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -103,7 +103,7 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
   } )
   return (
     <>
-      <StatusBar backgroundColor={ BAR_LIGHT_COLOR } style="dark" />
+      <StatusBar style="dark" />
       <AnimatedBlurView intensity={ 40 } style={ [ styles.container, { opacity } ] }>
         <View style={ useVP( styles.card ) }>
           <Message text={ text } importantText={ importantText } />

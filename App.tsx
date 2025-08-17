@@ -9,9 +9,8 @@ import useSplashScreen from './src/hooks/splash_screen'
 import useStorageState from './src/hooks/storage_state'
 import useTimer from './src/hooks/timer'
 import ViewportProvider from 'react-native-viewport-provider'
-import { BASE_LIGHT_COLOR } from './src/data/styles.json'
 import { LOGGED_KEY } from './src/data/storage_keys.json'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 
 const StartViewComponent = StartView as unknown as ( props:object ) => ReactElement
@@ -27,10 +26,10 @@ const AppContent = ( props:AppContentProps ): ReactElement => {
     onLayout()
   }, [] )
   return (
-    <>
+    <SafeAreaProvider>
       <StartViewComponent />
       <GameView />
-    </>
+    </SafeAreaProvider>
   )
 }
 
@@ -48,12 +47,10 @@ const App = (): ReactElement | null => {
   if( !loaded ) { return null }
   return (
     <AppStateProvider value={ value }>
-      <StatusBar backgroundColor={ BASE_LIGHT_COLOR } style="dark" />
-      <SafeAreaView>
-        <ViewportProvider>
-          <AppContent onLayout={ onLayout } />
-        </ViewportProvider>
-      </SafeAreaView>
+      <StatusBar style="dark" />
+      <ViewportProvider>
+        <AppContent onLayout={ onLayout } />
+      </ViewportProvider>
     </AppStateProvider>
   )
 }

@@ -1,11 +1,12 @@
 import AnimatedSample from '../components/AnimatedSample'
 import CreateSwitchable from 'react-component-switcher'
 import React, { ReactElement } from 'react'
+import SafeArea from '../components/SafeArea'
 import StartButton from '../components/StartButton'
 import useLanguage from '../hooks/language'
 import View from '../components/View'
 import { BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View as RNView } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
 
 const WelcomeMessage = (): ReactElement => {
@@ -20,16 +21,21 @@ const WelcomeMessage = (): ReactElement => {
 // Say welcome (only should be showed for the first time)
 const StartView = (): ReactElement => {
   return (
-    <View style={ styles.view }>
-      <WelcomeMessage />
-      <AnimatedSample />
-      <StartButton />
+    <View>
+      <SafeArea>
+        <RNView style={ styles.view }>
+          <WelcomeMessage />
+          <AnimatedSample />
+          <StartButton />
+        </RNView>
+      </SafeArea>
     </View>
   )
 }
 
 const styles = StyleSheet.create( {
   view: {
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'space-between',
     alignItems: 'center',
   },

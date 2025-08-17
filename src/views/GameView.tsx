@@ -5,6 +5,7 @@ import HeaderContainer from '../components/HeaderContainer'
 import PauseButton from '../components/PauseButton'
 import RandomButton from '../components/RandomButton'
 import React, { ReactElement } from 'react'
+import SafeArea from '../components/SafeArea'
 import Timer from '../components/Timer'
 import useAppState from '../hooks/app_state'
 import useItemsManager from '../hooks/items_manager'
@@ -28,15 +29,17 @@ const GameView = (): ReactElement => {
   useProgressSaver()  // Updating storage access to the current progress
   return (
     <View style={ style }>
-      <GameContainer style={ opacityStyle } >
-        <HeaderContainer>
-          <PauseButton play={ gameRunning } setPlay={ setGameRunning } />
-          <RandomButton random={ random } />
-        </HeaderContainer>
-        <Board play={ gameRunning } items={ items } go={ go } random={ random } />
-        <Timer count={ gameRunning } />
-        <CardComponent hide={ Card.hide } />
-      </GameContainer>
+      <SafeArea>
+        <GameContainer style={ opacityStyle } >
+          <HeaderContainer>
+            <PauseButton play={ gameRunning } setPlay={ setGameRunning } />
+            <RandomButton random={ random } />
+          </HeaderContainer>
+          <Board play={ gameRunning } items={ items } go={ go } random={ random } />
+          <Timer count={ gameRunning } />
+          <CardComponent hide={ Card.hide } />
+        </GameContainer>
+      </SafeArea>
     </View>
   )
 }
