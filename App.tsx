@@ -14,6 +14,8 @@ import { LOGGED_KEY } from './src/data/storage_keys.json'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 
+const StartViewComponent = StartView as unknown as ( props:object ) => ReactElement
+
 interface AppContentProps { onLayout:FunctionVoid }
 
 // Root components
@@ -26,7 +28,7 @@ const AppContent = ( props:AppContentProps ): ReactElement => {
   }, [] )
   return (
     <>
-      <StartView />
+      <StartViewComponent />
       <GameView />
     </>
   )

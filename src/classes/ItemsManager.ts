@@ -24,7 +24,7 @@ class ItemsManager {
   ) {
     // Building items (them are sorted by default)
     for( let _this = 0; _this < colors.length; _this++ ) {
-      const color: string = colors[ _this ]
+      const color: string = colors[ _this ]!
       const { x, y } = resolveAsMatrix( _this, BOARD_GRID_SIZE )
       const tag: number = _this + 1
       const newItem = new Item( tag, x, y, color )
@@ -43,8 +43,8 @@ class ItemsManager {
   private useOrder( items:Item[] ) {
     for( let _this = 0; _this < this.list.length; _this++ ) {
       // Using position of the reference in the current item
-      const boardItem: Item = this.list[ _this ],
-        referenceItem: Item = items[ _this ]
+      const boardItem: Item = this.list[ _this ]!,
+        referenceItem: Item = items[ _this ]!
       boardItem.x = referenceItem.x
       boardItem.y = referenceItem.y
     }
@@ -54,7 +54,7 @@ class ItemsManager {
   // Move the item with the "tag" to the specified direction
   public go( tag:number, direction:Direction, updateState:boolean, ) {
     const targetIndex: number = tag - 1,
-      target: Item = this.list[ targetIndex ]
+      target: Item = this.list[ targetIndex ]!
     // Walking to "direction"
     if( direction === Direction.UP ) { target.y += -1 }
     else if( direction === Direction.LEFT ) { target.x += -1 }
@@ -140,8 +140,8 @@ class ItemsManager {
   public static isOrganized( list:Item[] ): boolean {
     let orderIsCorrect = true
     for( let _this = 0; _this < list.length; _this++ ) {
-      const item: Item = list[ _this ],
-        defaultOrder: Coordinates = ItemsManager.correctOrder[ _this ]
+      const item: Item = list[ _this ]!,
+        defaultOrder: Coordinates = ItemsManager.correctOrder[ _this ]!
       // Checking if every item is at its default position
       const itemOrderIsCorrect: boolean = ( item.x === defaultOrder.x ) && ( item.y === defaultOrder.y )
       if( !itemOrderIsCorrect ) {

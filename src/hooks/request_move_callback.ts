@@ -40,7 +40,7 @@ async function requestMove( params:RequestMoveParams ) {
   }
   // Testing availability of the four adjacent sides to the target item, to find the blank space
   const targetIndex: number = targetTag - 1,
-    target: Item = items[ targetIndex ]
+    target: Item = items[ targetIndex ]!
   let blankSpaceDirection: Direction | null = null
   for( const side of sides ) {
     // Calculating coordinates of this side

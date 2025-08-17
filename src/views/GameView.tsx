@@ -15,6 +15,8 @@ import useUnloggedDisplacement from '../hooks/unlogged_displacement'
 import View from '../components/View'
 import { GAME_VIEW_DISPLACEMENT_DURATION } from '../data/constants.json'
 
+const CardComponent = Card as unknown as ( props:{ hide:( () => void ) } ) => ReactElement
+
 // Main view of the game
 const GameView = (): ReactElement => {
   const { logged, gameRunning, setGameRunning } = useAppState()
@@ -33,7 +35,7 @@ const GameView = (): ReactElement => {
         </HeaderContainer>
         <Board play={ gameRunning } items={ items } go={ go } random={ random } />
         <Timer count={ gameRunning } />
-        <Card hide={ Card.hide } />
+        <CardComponent hide={ Card.hide } />
       </GameContainer>
     </View>
   )

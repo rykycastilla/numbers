@@ -30,7 +30,7 @@ const SampleItemsList = (): ReactElement => {
   const items: ReactElement[] = []
   // Creating an item for each color
   for( let _this = 0; _this < sampleColors.length; _this++ ) {
-    const color: string = sampleColors[ _this ]
+    const color: string = sampleColors[ _this ]!
     const initPosition: number = _this >= 5  // Skipping cell 6
       ? _this + 1
       : _this

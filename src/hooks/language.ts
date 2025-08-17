@@ -7,9 +7,11 @@ import { useLocales } from 'expo-localization'
 
 // Gets the current device language
 function useLanguage(): Language {
-  const [ { languageCode:deviceLanguage } ] = useLocales()
+  const [ locales ] = useLocales()
+  if( locales === undefined ) { return english }
+  const { languageCode } = locales
   // Using spanish by default
-  return ( deviceLanguage === 'es' ) ? spanish : english
+  return ( languageCode === 'es' ) ? spanish : english
 }
 
 export default useLanguage
