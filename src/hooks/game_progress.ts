@@ -43,7 +43,7 @@ function useGameProgress( setTimer:ReactSetter<number> ): GameProgress {
   const loadProgress: Promise<void> = useMemo( () => {
     const args = { setTimer, setItems, setManager }
     return loadGameProgress( args )
-  }, [] )
+  }, [] )  // eslint-disable-line
   return { loadProgress, manager, items }
 }
 

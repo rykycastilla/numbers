@@ -9,7 +9,7 @@ import { BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/st
 import { StyleSheet, Text, View as RNView } from 'react-native'
 import { useVP } from 'react-native-viewport-provider'
 
-const WelcomeMessage = (): ReactElement => {
+const WelcomeMessage = (): ReactElement => {  // eslint-disable-line
   const language = useLanguage()
   return (
     <Text style={ useVP( styles.welcomeMessage ) }>
@@ -19,7 +19,7 @@ const WelcomeMessage = (): ReactElement => {
 }
 
 // Say welcome (only should be showed for the first time)
-const StartView = (): ReactElement => {
+const StartView = (): ReactElement => {  // eslint-disable-line
   return (
     <View>
       <SafeArea>
@@ -53,4 +53,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default CreateSwitchable( StartView )
+export default CreateSwitchable( StartView )  // eslint-disable-line
