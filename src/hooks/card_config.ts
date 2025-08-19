@@ -14,7 +14,7 @@ function useCardConfig ( hiding:boolean, duration:number ): Animated.Value {
       duration,
       useNativeDriver: true,
     } ).start()
-  }, [ hiding ] )
+  }, [ hiding ] )  // eslint-disable-line
   return opacity
 }
 

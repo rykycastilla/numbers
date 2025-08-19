@@ -18,7 +18,7 @@ function useAnimatedPosition( position:number ): AnimatedInterpolation {
   useEffect( () => {
     const animation = Animated.timing( animRef, { toValue, duration, useNativeDriver } )
     animation.start()
-  }, [ position ] )
+  }, [ position ] )  // eslint-disable-line
   // Parsing animation values
   const boardPosition: AnimatedInterpolation = animRef.interpolate( {
     inputRange: [ 0, 1, 2, 3 ],

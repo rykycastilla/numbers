@@ -11,7 +11,7 @@ function useBackButton( callback:BackCallback ) {
       return true
     } )
     return () => handler.remove()
-  }, [] )
+  }, [] )  // eslint-disable-line
 }
 
 export default useBackButton

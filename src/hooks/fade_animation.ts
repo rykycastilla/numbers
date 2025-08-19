@@ -22,7 +22,7 @@ function useFadeAnimation( duration:number ): FadeAnimationResult {
       duration,
       useNativeDriver: true,
     } ).start()
-  }, [ duration ] )
+  }, [ duration ] )  // eslint-disable-line
   // Creating style to apply animation on it
   const opacityStyle = { opacity: animRef }
   return { startFade, opacityStyle }
