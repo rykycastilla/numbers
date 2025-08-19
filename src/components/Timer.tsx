@@ -15,7 +15,7 @@ function useStartTimer( setTime:ReactSetter<number> ) {
       setTime( time => time + 1 )
     }, 1000 )
     return timerId
-  }, [] )
+  }, [ setTime ] )
   return startTimer
 }
 
@@ -39,7 +39,7 @@ function useTimerState( params:UseTimerStateParams ) {
       clearInterval( timerId )
       setTimerId( null )
     }
-  }, [ count ] )
+  }, [ count ] )  // eslint-disable-line
 }
 
 interface TimerProps { count:boolean }
