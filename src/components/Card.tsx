@@ -24,7 +24,7 @@ interface MessageProps {
 }
 
 // Text of the card
-const Message = ( props:MessageProps ): ReactElement => {
+const Message = ( props:MessageProps ): ReactElement => {  // eslint-disable-line
   const { text, importantText } = props
   // Using it if the card have important text
   const itIsImportant: boolean = typeof importantText === 'string'
@@ -32,7 +32,14 @@ const Message = ( props:MessageProps ): ReactElement => {
     <Text style={ useVP( styles.message ) }>
       { text }
       { itIsImportant && '\n\n' }
-      { itIsImportant && <Text style={ useVP( styles.importantMessage ) }>{ importantText }</Text> }
+      {
+        itIsImportant &&
+          <Text
+            // eslint-disable-next-line
+            style={ useVP( styles.importantMessage ) }>
+            { importantText }
+          </Text>
+      }
     </Text>
   )
 }
@@ -44,7 +51,7 @@ interface ButtonProps {
   size: CardButtonType,
 }
 
-const Button = ( props:ButtonProps ): ReactElement => {
+const Button = ( props:ButtonProps ): ReactElement => {  // eslint-disable-line
   const { title, solid, action, size } = props
   // Creating color scheme of the button: show text with color or background with color
   const backgroundColor: string = solid ? MAIN_LIGHT_COLOR : BASE_LIGHT_COLOR
@@ -68,7 +75,7 @@ interface ButtonBoxProps {
 }
 
 // Control buttons of the card
-const ButtonBox = ( props:ButtonBoxProps ): ReactElement => {
+const ButtonBox = ( props:ButtonBoxProps ): ReactElement => {  // eslint-disable-line
   const { hide, action, isAlert } = props
   const acceptButtonSize: CardButtonType = isAlert ? CardButtonType.FULL : CardButtonType.MIDDLE
   const language = useLanguage()
@@ -91,7 +98,7 @@ interface CardCallerProps {
 }
 
 // Bottom Card to display alerts and warnings
-const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
+const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {  // eslint-disable-line
   const { hide } = props
   const { text, importantText, action, isAlert } = callerProps
   const hiding = useHiding()
@@ -173,4 +180,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default CreateSwitchable( Card, FADE_DURATION )
+export default CreateSwitchable( Card, FADE_DURATION )  // eslint-disable-line
