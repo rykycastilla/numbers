@@ -61,7 +61,7 @@ const AnimatedSample = (): ReactElement => {
     <View style={ useVP( styles.container ) }>
       <ItemsGroup />
       <Text style={ useVP( styles.instructions ) }>{ language.gameInstructions }</Text>
-    </View> 
+    </View>
   )
 }
 

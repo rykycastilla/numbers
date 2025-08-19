@@ -8,7 +8,7 @@ import { useCallback } from 'react'
 
 type GoFunction = ( tag:number, drection:Direction ) => Promise<void>
 
-// Returns the current position of the items and a "go function" to redirect an specific item 
+// Returns the current position of the items and a "go function" to redirect an specific item
 function useItemsManager(): [ Item[], GoFunction, MovementFunction ] {
   const { setTimer, manager, items } = useAppState()
   // Creating go function. It is async because you can wait with it the estimated duration of the item animation

@@ -52,7 +52,7 @@ class ItemsManager {
   }
 
   // Move the item with the "tag" to the specified direction
-  public go( tag:number, direction:Direction, updateState:boolean, ) {
+  public go( tag:number, direction:Direction, updateState:boolean ) {
     const targetIndex: number = tag - 1,
       target: Item = this.list[ targetIndex ]!
     // Walking to "direction"
@@ -104,7 +104,7 @@ class ItemsManager {
       const itemAtThisSide: Item | undefined = this.getItemFrom( x, y )
       if( itemAtThisSide ) {  // Saving item and direction
         const adjacentItem: AdjacentItem = [ itemAtThisSide, side.direction ]
-        adjacentItems.push( adjacentItem ) 
+        adjacentItems.push( adjacentItem )
       }
     }
     return adjacentItems

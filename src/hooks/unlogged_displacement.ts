@@ -35,7 +35,7 @@ function useUnloggedDisplacement( logged:boolean, duration:number ): UnloggedDis
   } )
   const style = {  // This returned style must be applied to the main view to use this effect
     left,
-    transform: [ { translateX } ]
+    transform: [ { translateX } ],
   }
   return style
 }

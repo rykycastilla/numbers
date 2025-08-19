@@ -3,7 +3,7 @@ import ReactElements from '../types/ReactElements'
 import { Animated, StyleSheet } from 'react-native'
 import { BASE_DARK_COLOR, BASE_LIGHT_COLOR } from '../data/styles.json'
 
-interface ViewProps { 
+interface ViewProps {
   children: ReactElements,
   style?: object,
 }
@@ -31,7 +31,7 @@ const styles = StyleSheet.create( {
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 15,
-  }
+  },
 } )
 
 export default View

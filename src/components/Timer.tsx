@@ -59,8 +59,8 @@ const styles = StyleSheet.create( {
     marginBottom: MARGIN as unknown as number,
     color: BASE_DARK_COLOR,
     fontSize: FONT_SIZE,
-    fontFamily: 'Comfortaa'
-  }
+    fontFamily: 'Comfortaa',
+  },
 } )
 
 export default Timer

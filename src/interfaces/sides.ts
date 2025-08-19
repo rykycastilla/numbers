@@ -20,7 +20,7 @@ const sides = [
     direction: Direction.DOWN,
     x: 0,
     y: 1,
-  }
+  },
 ]
 
 export default sides

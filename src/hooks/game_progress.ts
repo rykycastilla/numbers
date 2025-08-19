@@ -41,7 +41,7 @@ function useGameProgress( setTimer:ReactSetter<number> ): GameProgress {
   // WARNING: you have to ensure that the loadProgress promise is resolved to use "manager"
   const [ manager, setManager ] = useState( null as unknown as ItemsManager )
   const loadProgress: Promise<void> = useMemo( () => {
-    const args = { setTimer, setItems, setManager } 
+    const args = { setTimer, setItems, setManager }
     return loadGameProgress( args )
   }, [] )
   return { loadProgress, manager, items }

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 class StorageKey<T> {
-  
+
   constructor(
     public readonly token: string,
     public readonly defaultValue: T,
@@ -10,10 +10,10 @@ class StorageKey<T> {
 }
 
 class Storage {
-  
+
   // Use to create new keys
   public readonly Key = StorageKey
-  
+
   // Get value from persistent storage
   public async get<T>( storageKey:StorageKey<T> ): Promise<T> {
     // Extracting storage data

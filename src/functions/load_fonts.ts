@@ -7,7 +7,7 @@ async function loadFonts(): Promise<void> {
   // Custom fonts ('Font-Name': resource)
   const fonts = {
     'Comfortaa': comfortaa,
-    'Comfortaa-Bold': comfortaaBold, 
+    'Comfortaa-Bold': comfortaaBold,
   }
   await loadAsync( fonts )  // Loading with expo
 }

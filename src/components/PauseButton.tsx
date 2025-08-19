@@ -12,7 +12,7 @@ interface PauseButtonProps {
 
 const PauseButton = ( props:PauseButtonProps ): ReactElement => {
   const { play, setPlay } = props
-  const picture: ImageURISource = play ? pauseButton : playButton 
+  const picture: ImageURISource = play ? pauseButton : playButton
   return <GameButton picture={ picture } onPress={ () => setPlay( !play ) } />
 }
 

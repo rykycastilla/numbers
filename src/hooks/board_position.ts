@@ -12,7 +12,7 @@ interface Position {
   left: number,
 }
 
-// These are single Position properties with viewport units (them need to be parsed) 
+// These are single Position properties with viewport units (them need to be parsed)
 interface RawPosition {
   top: string,
   left: string,

@@ -23,7 +23,7 @@ const styles = StyleSheet.create( {
     marginTop: MARGIN as unknown as number,
     justifyContent: 'space-between',
     flexDirection: 'row',
-  }
+  },
 } )
 
 export default HeaderContainer

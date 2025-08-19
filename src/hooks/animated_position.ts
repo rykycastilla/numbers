@@ -22,7 +22,7 @@ function useAnimatedPosition( position:number ): AnimatedInterpolation {
   // Parsing animation values
   const boardPosition: AnimatedInterpolation = animRef.interpolate( {
     inputRange: [ 0, 1, 2, 3 ],
-    outputRange: [ 0, cell, cell*2, cell*3 ],
+    outputRange: [ 0, cell, cell * 2, cell * 3 ],
   } )
   return boardPosition
 }

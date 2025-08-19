@@ -5,7 +5,7 @@ class Position {
     public x: number,
     public y: number,
     public color: string,
-  ){}
+  ) {}
 
 }
 
