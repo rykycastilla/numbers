@@ -12,7 +12,6 @@
     "@react-native-async-storage/async-storage": "2.1.2",
     "async-storage": "^0.1.0",
     "expo": "^53.0.20",
-    "expo-av": "~15.1.7",
     "expo-blur": "~14.1.5",
     "expo-font": "~13.3.2",
     "expo-localization": "~16.1.6",
@@ -22,7 +21,8 @@
     "react-component-switcher": "^2.0.0",
     "react-native": "0.79.5",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-viewport-provider": "^1.2.1"
+    "react-native-viewport-provider": "^1.2.1",
+    "expo-audio": "~0.4.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

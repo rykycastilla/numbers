@@ -1,23 +1,15 @@
-import { Audio, AVPlaybackSource } from 'expo-av'
-import { useEffect, useState } from 'react'
+import { AudioSource, useAudioPlayer } from 'expo-audio'
+import { useCallback } from 'react'
 
-type Sound = Audio.Sound | null
-
-// Load a sound source from assets and returns a function to play it
-function useSound( source:AVPlaybackSource ): () => Promise<void> {
-  const [ sound, setSound ] = useState( null as Sound )
-  // Unloading sound when is not needed
-  useEffect( () => {
-    if( !sound ) { return }
-    return () => { sound.unloadAsync() }
+/**
+ * Load a sound source from assets and returns a function to play it
+ */
+function useSound( source:AudioSource ): () => Promise<void> {
+  const sound = useAudioPlayer( source )
+  return useCallback( async() => {
+    sound.seekTo( 0 )
+    sound.play()
   }, [ sound ] )
-  // Handling "play function"
-  const play = async() => {
-    const { sound } = await Audio.Sound.createAsync( source )
-    setSound( sound )
-    sound.playAsync()
-  }
-  return play
 }
 
 export default useSound
