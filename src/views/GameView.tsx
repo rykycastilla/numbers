@@ -37,9 +37,9 @@ const GameView = (): ReactElement => {
           </HeaderContainer>
           <Board play={ gameRunning } items={ items } go={ go } random={ random } />
           <Timer count={ gameRunning } />
-          <CardComponent hide={ Card.hide } />
         </GameContainer>
       </SafeArea>
+      <CardComponent hide={ Card.hide } />
     </View>
   )
 }
