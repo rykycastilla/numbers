@@ -3,6 +3,7 @@ import CardButtonType from '../enums/CardButtonType'
 import CreateSwitchable, { HideFunction, useHiding } from 'react-component-switcher'
 import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
+import SafeArea from '../components/SafeArea'
 import useBackButton from '../hooks/back_button'
 import useCardConfig from '../hooks/card_config'
 import useLanguage from '../hooks/language'
@@ -111,11 +112,15 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
   return (
     <>
       <StatusBar style="dark" />
-      <AnimatedBlurView intensity={ 40 } style={ [ styles.container, { opacity } ] }>
-        <View style={ useVP( styles.card ) }>
-          <Message text={ text } importantText={ importantText } />
-          <ButtonBox hide={ hide } action={ action } isAlert={ isAlert } />
-        </View>
+      <AnimatedBlurView intensity={ 40 } style={ [ styles.blur, { opacity } ] }>
+        <SafeArea>
+          <View style={ styles.container }>
+            <View style={ useVP( styles.card ) }>
+              <Message text={ text } importantText={ importantText } />
+              <ButtonBox hide={ hide } action={ action } isAlert={ isAlert } />
+            </View>
+          </View>
+        </SafeArea>
       </AnimatedBlurView>
     </>
   )
@@ -124,11 +129,13 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
 const CARD_SIZE = `( 100vw - ${ MARGIN } * 2 )`
 
 const styles = StyleSheet.create( {
-  container: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
+  blur: {
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba( 0, 0, 0, 0.5 )',
+  },
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
