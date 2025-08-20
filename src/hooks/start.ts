@@ -12,7 +12,7 @@ function useStart( logged:boolean, startFade:FadeAnimationFunction, setGameRunni
       startFade( Opacity.SHOW )  // Using start animation
       setGameRunning( true )
     }, GAME_VIEW_DISPLACEMENT_DURATION )  // Waiting the login animation end to start the game
-  }, [ logged ] )
+  }, [ logged ] )  // eslint-disable-line
 }
 
 export default useStart

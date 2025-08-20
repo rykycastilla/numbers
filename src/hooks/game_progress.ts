@@ -25,7 +25,7 @@ async function loadGameProgress( params:LoadProgressParams ) {
   // Loading default items position
   const board: Item[] | undefined = await storage.get( BOARD_KEY )
   if( board ) {
-    await ItemsManager.useOrder( manager, board )
+    await ItemsManager.setOrder( manager, board )
   }
 }
 

@@ -11,6 +11,7 @@ interface UnloggedDisplacementStyle {
 // Show the view from the right to log in (whow automatically if is logged by default)
 function useUnloggedDisplacement( logged:boolean, duration:number ): UnloggedDisplacementStyle {
   const { width } = useDimensions()
+  // eslint-disable-next-line
   const initLoggedState: boolean = useMemo( () => logged, [] )  // Saving first login value
   const left: number = initLoggedState ? 0 : width
   // Setting animation
@@ -22,12 +23,12 @@ function useUnloggedDisplacement( logged:boolean, duration:number ): UnloggedDis
       useNativeDriver = false
     const animation = Animated.timing( animRef, { toValue, duration, useNativeDriver } )
     animation.start()
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Call animation when is logged (only if there is a login state change)
   useEffect( () => {
     const hasChange: boolean = logged !== initLoggedState
     if( logged && hasChange ) { move() }
-  }, [ logged ] )
+  }, [ logged ] )  // eslint-disable-line
   // Parsing position
   const translateX: AnimatedInterpolation = animRef.interpolate( {
     inputRange: [ 0, 1 ],

@@ -20,7 +20,7 @@ function useWinChecking( items:Item[], random:MovementFunction ) {
       const args = { timer, time, random, setGameRunning, playSuccess, language }
       win( args )
     }
-  }, [ items ] )
+  }, [ items ] )  // eslint-disable-line
 }
 
 export default useWinChecking

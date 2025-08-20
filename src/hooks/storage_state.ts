@@ -21,13 +21,13 @@ function useStorageState<T>( initialState:T, key:string ): StateResult<T> {
   // Requesting data from torage
   const promise: Promise<T> = useMemo( () => {
     return storageRequest( key, state, setState )
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Creating custom setter (to save in async storage automatically)
   const setStorageState = useCallback( ( newState:T ) => {
     const encodedState: string = JSON.stringify( newState )
     AsyncStorage.setItem( key, encodedState )
     setState( newState )
-  }, [] ) as ReactSetter<T>
+  }, [] ) as ReactSetter<T>  // eslint-disable-line
   return [ state, setStorageState, promise ]  // Returning the "storage load" promise with the state handlers
 }
 

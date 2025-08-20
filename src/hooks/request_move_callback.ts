@@ -85,7 +85,7 @@ function useRequestMoveCallback( params:UseRequestMoveCallbackParams ): RequestM
   // Creating a React Hook with the function
   const requestMoveCallback: RequestMoveCallback = useCallback( async( targetTag:number, impossibleFeedback:MovementFunction ) => {
     await requestMove( { items, go, targetTag, impossibleFeedback, playFeedback, playImpossibleFeedback } )
-  }, [ items ] )
+  }, [ items ] )   // eslint-disable-line
   return requestMoveCallback
 }
 

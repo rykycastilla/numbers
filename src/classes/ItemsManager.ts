@@ -153,7 +153,7 @@ class ItemsManager {
   }
 
   // Used to assign an specific order to an "ItemsManager" instance (treated like a promise)
-  public static async useOrder( manager:ItemsManager, items:Item[] ) {
+  public static async setOrder( manager:ItemsManager, items:Item[] ) {
     manager.useOrder( items )
     await wait( ITEM_DISPLACEMENT_DURATION )
   }

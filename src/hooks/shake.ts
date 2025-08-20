@@ -18,7 +18,7 @@ function useDisplace( animRef:Animated.Value, toValue:number ): MovementFunction
       useNativeDriver: false,
     } ).start()
     await wait( duration )  // waiting animation end
-  }, [] )
+  }, [] )  // eslint-disable-line
   return displace
 }
 
@@ -34,7 +34,7 @@ function useWobble( animRef:Animated.Value, direction:DirectionInX ): MovementFu
   const wobble: MovementFunction = useCallback( async() => {
     await goMovement()
     await comeBackMovement()
-  }, [] )
+  }, [] )  // eslint-disable-line
   return wobble
 }
 
@@ -56,7 +56,7 @@ function useShake(): ShakeResult {
       if( wobble === Direction.LEFT ) { await leftWobble() }
       else if( wobble === Direction.RIGHT )  { await rightWobble() }
     }
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Calculating displacement
   const { width } = useDimensions()
   const displacement: number = Math.round( width / 100 * 0.8 )

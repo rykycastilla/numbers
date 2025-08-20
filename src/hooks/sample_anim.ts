@@ -23,7 +23,7 @@ function useSampleAnim( animated:boolean ): AnimatedInterpolation {
     const animationSettings = { toValue, duration, useNativeDriver }
     const animation = Animated.timing( animationRef, animationSettings )
     animation.start()
-  }, [ displaced ] )
+  }, [ displaced ] )  // eslint-disable-line
   // Creating animation launcher
   const move = useCallback( () => {
     setInterval( () => {
@@ -33,7 +33,7 @@ function useSampleAnim( animated:boolean ): AnimatedInterpolation {
   // Launching (only for animated items)
   useEffect( () => {
     if( animated ) { move() }
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Parsing position values
   const displacementX: AnimatedInterpolation = animationRef.interpolate( {
     inputRange: [ 0, 1 ],

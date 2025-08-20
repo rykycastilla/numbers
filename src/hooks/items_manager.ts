@@ -15,12 +15,12 @@ function useItemsManager(): [ Item[], GoFunction, MovementFunction ] {
   const go = useCallback( async( tag:number, direction:Direction ) => {
     manager.go( tag, direction, true )
     await wait( ITEM_DISPLACEMENT_DURATION )
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Creating random function
   const random: MovementFunction = useCallback( async() => {
     manager.randomSort()
     setTimer( 0 )  // Restart timer
-  }, [] )
+  }, [] )  // eslint-disable-line
   return [ items, go, random ]
 }
 

@@ -19,7 +19,7 @@ function useSplashScreen( callback:AsyncFunction ): SplashScreenState {
     callback().then( () => {
       setLoaded( true )
     } )
-  }, [] )
+  }, [] )  // eslint-disable-line
   // Setting onLayout (to hide splash screen)
   const onLayout = useCallback( () => {
     if( loaded ) { hideAsync() }

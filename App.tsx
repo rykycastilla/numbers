@@ -24,7 +24,7 @@ const AppContent = ( props:AppContentProps ): ReactElement => {
   useEffect( () => {
     if( !logged ) { StartView.show() }
     onLayout()
-  }, [] )
+  }, [] )  // eslint-disable-line
   return (
     <SafeAreaProvider>
       <StartViewComponent />
