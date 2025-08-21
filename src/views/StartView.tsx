@@ -7,12 +7,11 @@ import useLanguage from '../hooks/language'
 import View from '../components/View'
 import { BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN } from '../data/styles.json'
 import { StyleSheet, Text, View as RNView } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 const WelcomeMessage = (): ReactElement => {  // eslint-disable-line
   const language = useLanguage()
   return (
-    <Text style={ useVP( styles.welcomeMessage ) }>
+    <Text style={ styles.welcomeMessage }>
       { language.welcome }<Text style={ styles.gameName }>Numbers</Text>{ language.welcomeDescription }
     </Text>
   )
@@ -40,9 +39,9 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   welcomeMessage: {
-    marginTop: MARGIN as unknown as number,
-    marginLeft: MARGIN as unknown as number,
-    marginRight: MARGIN as unknown as number,
+    marginTop: MARGIN,
+    marginLeft: MARGIN,
+    marginRight: MARGIN,
     color: BASE_DARK_COLOR,
     fontSize: FONT_SIZE,
     fontFamily: 'Comfortaa',
