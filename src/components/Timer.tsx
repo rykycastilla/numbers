@@ -55,7 +55,7 @@ const Timer = ( props:TimerProps ): ReactElement => {
 
 const styles = StyleSheet.create( {
   timer: {
-    marginBottom: MARGIN as unknown as number,
+    marginBottom: MARGIN,
     color: BASE_DARK_COLOR,
     fontSize: FONT_SIZE,
     fontFamily: 'Comfortaa',
