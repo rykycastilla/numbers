@@ -17,9 +17,9 @@ const HeaderContainer = ( props:HeaderContainerProps ): ReactElement => {
 
 const styles = StyleSheet.create( {
   header: {
-    width: `100vw - ${ MARGIN } * 2` as unknown as number,
-    height: GAME_BUTTON_SIZE as unknown as number,
-    marginTop: MARGIN as unknown as number,
+    width: '100%',
+    height: GAME_BUTTON_SIZE,
+    marginTop: MARGIN,
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
