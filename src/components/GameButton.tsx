@@ -19,8 +19,8 @@ const GameButton = ( props:GameButtonProps ): ReactElement => {
 
 const styles = StyleSheet.create( {
   gameButton: {
-    width: GAME_BUTTON_SIZE as unknown as number,
-    height: GAME_BUTTON_SIZE as unknown as number,
+    width: GAME_BUTTON_SIZE,
+    height: GAME_BUTTON_SIZE,
   },
   picture: {
     width: '100%',
