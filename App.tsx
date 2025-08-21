@@ -8,7 +8,6 @@ import useGameProgress from './src/hooks/game_progress'
 import useSplashScreen from './src/hooks/splash_screen'
 import useStorageState from './src/hooks/storage_state'
 import useTimer from './src/hooks/timer'
-import ViewportProvider from 'react-native-viewport-provider'
 import { LOGGED_KEY } from './src/data/storage_keys.json'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
@@ -48,9 +47,7 @@ const App = (): ReactElement | null => {
   return (
     <AppStateProvider value={ value }>
       <StatusBar style="dark" />
-      <ViewportProvider>
-        <AppContent onLayout={ onLayout } />
-      </ViewportProvider>
+      <AppContent onLayout={ onLayout } />
     </AppStateProvider>
   )
 }
