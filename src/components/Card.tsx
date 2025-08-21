@@ -118,8 +118,6 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
   )
 }
 
-const CARD_SIZE = `( 100vw - ${ MARGIN } * 2 )`
-
 const styles = StyleSheet.create( {
   blur: {
     ...StyleSheet.absoluteFillObject,
@@ -132,9 +130,9 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   card: {
-    width: CARD_SIZE as unknown as number,
-    marginBottom: MARGIN as unknown as number,
-    borderRadius: '4vw' as unknown as number,
+    width: '100%',
+    marginBottom: MARGIN,
+    borderRadius: 15,
     backgroundColor: BASE_LIGHT_COLOR,
     shadowColor: 'black',
     shadowOffset: { width: 1, height: 2 },
@@ -143,10 +141,10 @@ const styles = StyleSheet.create( {
     elevation: 4,
   },
   message: {
-    marginTop: MARGIN as unknown as number,
-    marginLeft: MARGIN as unknown as number,
-    marginRight: MARGIN as unknown as number,
-    marginBottom: `${ MARGIN } * 2` as unknown as number,
+    marginTop: MARGIN,
+    marginLeft: MARGIN,
+    marginRight: MARGIN,
+    marginBottom: MARGIN * 2,
     color: BASE_DARK_COLOR,
     fontFamily: 'Comfortaa',
     fontSize: FONT_SIZE,
@@ -156,18 +154,22 @@ const styles = StyleSheet.create( {
     fontFamily: 'Comfortaa-Bold',
   },
   button: {
-    height: `${ FONT_SIZE } * 2.15` as unknown as number,
-    marginLeft: MARGIN as unknown as number,
-    marginBottom: MARGIN as unknown as number,
+    height: FONT_SIZE * 2.15,
+    marginLeft: MARGIN,
+    marginBottom: MARGIN,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  middleButtonWidth: { width: `( ${ CARD_SIZE } - ${ MARGIN } * 3 ) / 2` as unknown as number },
-  fullButtonWidth: { width: `${ CARD_SIZE } - ${ MARGIN } * 2` as unknown as number },
+  middleButtonWidth: {
+    width: 100,
+  },
+  fullButtonWidth: {
+    width: 100,
+  },
   buttonTitle: {
     width: '100%',
     height: '100%',
-    borderRadius: '2.5vw' as unknown as number,
+    borderRadius: 7.5,
     fontFamily: 'Comfortaa-Bold',
     fontSize: FONT_SIZE * 1.05,
     textAlign: 'center',
