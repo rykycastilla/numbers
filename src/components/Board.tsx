@@ -10,7 +10,6 @@ import useWinChecking from '../hooks/win_checking'
 import { GoFunction } from '../hooks/items_manager'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 /*
 
@@ -56,8 +55,8 @@ const Board = ( props:BoardProps ): ReactElement => {
   const { play, items, go, random } = props
   useWinChecking( items, random )  // Used to win
   return (
-    <View style={ useVP( styles.parentContainer ) }>
-      <View style={ useVP( styles.childContainer ) }>
+    <View style={ styles.parentContainer }>
+      <View style={ styles.childContainer }>
         <ItemsList items={ items } go={ go } />
       </View>
       { /* Is used a wall to stop interaction with the board when the game is paused */ }

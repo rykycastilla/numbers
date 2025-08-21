@@ -5,7 +5,6 @@ import { Animated, Pressable, StyleSheet, Text } from 'react-native'
 import { BASE_LIGHT_COLOR, FONT_SIZE } from '../data/styles.json'
 import { ITEM_SIZE } from '../data/constants.json'
 import { RequestMoveCallback } from '../hooks/request_move_callback'
-import { useVP } from 'react-native-viewport-provider'
 
 interface ItemProps {
   tag: number,
@@ -27,9 +26,9 @@ const Item = ( props:ItemProps ): ReactElement => {
     transform = [ { translateX }, { translateY }, shakePosition ],
     position = { transform }
   return (
-    <Animated.View style={ useVP( [ styles.item, { backgroundColor }, position ] ) }>
+    <Animated.View style={ [ styles.item, { backgroundColor }, position as any ] }>
       <Pressable style={ styles.touchableArea } onPress={ () => requestMove( tag, shake ) }>
-        <Text style={ useVP( styles.tag ) }>{ tag }</Text>
+        <Text style={ styles.tag }>{ tag }</Text>
       </Pressable>
     </Animated.View>
   )

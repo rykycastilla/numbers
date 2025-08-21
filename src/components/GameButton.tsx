@@ -2,7 +2,6 @@ import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
 import { GAME_BUTTON_SIZE } from '../data/constants.json'
 import { Image, ImageURISource, StyleSheet, TouchableOpacity } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 interface GameButtonProps {
   picture: ImageURISource,
@@ -12,7 +11,7 @@ interface GameButtonProps {
 const GameButton = ( props:GameButtonProps ): ReactElement => {
   const { picture, onPress } = props
   return (
-    <TouchableOpacity style={ useVP( styles.gameButton ) } onPress={ onPress }>
+    <TouchableOpacity style={ styles.gameButton } onPress={ onPress }>
       <Image source={ picture } style={ styles.picture } />
     </TouchableOpacity>
   )

@@ -6,7 +6,6 @@ import useSamplePosition from '../hooks/sample_position'
 import { Animated, StyleSheet, Text, View } from 'react-native'
 import { BASE_DARK_COLOR, FONT_SIZE, MARGIN } from '../data/styles.json'
 import { SAMPLE_ITEM_SIZE } from '../data/constants.json'
-import { useVP } from 'react-native-viewport-provider'
 
 interface SampleItemProps {
   color: string,
@@ -23,7 +22,7 @@ const SampleItem = ( props:SampleItemProps ): ReactElement => {
   const transform = [ { translateX: x } ]
   const itemStyle = { top, left, backgroundColor, transform }
   // Rendering
-  return <Animated.View style={ useVP( [ styles.sampleItem, itemStyle ] ) } />
+  return <Animated.View style={ [ styles.sampleItem, itemStyle ] } />
 }
 
 const SampleItemsList = (): ReactElement => {
@@ -49,7 +48,7 @@ const SampleItemsList = (): ReactElement => {
 
 const ItemsGroup = (): ReactElement => {
   return (
-    <View style={ useVP( styles.itemsGroup ) }>
+    <View style={ styles.itemsGroup }>
       <SampleItemsList />
     </View>
   )
@@ -58,9 +57,9 @@ const ItemsGroup = (): ReactElement => {
 const AnimatedSample = (): ReactElement => {
   const language = useLanguage()
   return (
-    <View style={ useVP( styles.container ) }>
+    <View style={ styles.container }>
       <ItemsGroup />
-      <Text style={ useVP( styles.instructions ) }>{ language.gameInstructions }</Text>
+      <Text style={ styles.instructions }>{ language.gameInstructions }</Text>
     </View>
   )
 }

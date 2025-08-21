@@ -3,7 +3,6 @@ import ReactSetter from '../types/ReactSetter'
 import useAppState from '../hooks/app_state'
 import { BASE_DARK_COLOR, FONT_SIZE, MARGIN } from '../data/styles.json'
 import { StyleSheet, Text } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 type Timeout = NodeJS.Timeout
 type StartTimerFunction = () => Timeout
@@ -51,7 +50,7 @@ const Timer = ( props:TimerProps ): ReactElement => {
   const startTimer = useStartTimer( setTimer )  // Function to start the timer again
   // Pause the timer based on "count" value
   useTimerState( { count, startTimer, setTimerId, timerId } )
-  return <Text style={ useVP( styles.timer ) }>{ timer }</Text>
+  return <Text style={ styles.timer }>{ timer }</Text>
 }
 
 const styles = StyleSheet.create( {

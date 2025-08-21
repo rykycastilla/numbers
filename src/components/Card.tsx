@@ -11,7 +11,6 @@ import { BASE_LIGHT_COLOR, BASE_DARK_COLOR, FONT_SIZE, MAIN_LIGHT_COLOR, MARGIN 
 import { FADE_DURATION } from '../data/constants.json'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 // Executes a valid action of the card an hides the interface
 function executeAndExit( hide:HideFunction, action:FunctionVoid ) {
@@ -30,17 +29,10 @@ const Message = ( props:MessageProps ): ReactElement => {  // eslint-disable-lin
   // Using it if the card have important text
   const itIsImportant: boolean = typeof importantText === 'string'
   return (
-    <Text style={ useVP( styles.message ) }>
+    <Text style={ styles.message }>
       { text }
       { itIsImportant && '\n\n' }
-      {
-        itIsImportant &&
-          <Text
-            // eslint-disable-next-line
-            style={ useVP( styles.importantMessage ) }>
-            { importantText }
-          </Text>
-      }
+      { itIsImportant && <Text style={ styles.importantMessage }>{ importantText }</Text> }
     </Text>
   )
 }
@@ -63,8 +55,8 @@ const Button = ( props:ButtonProps ): ReactElement => {  // eslint-disable-line
   if( size === CardButtonType.MIDDLE ) { sizeStyle = styles.middleButtonWidth }
   else if( size === CardButtonType.FULL ) { sizeStyle = styles.fullButtonWidth }
   return (
-    <TouchableOpacity style={ useVP( [ styles.button, sizeStyle ] ) } onPress={ action }>
-      <Text style={ useVP( [ styles.buttonTitle, colorStyle ] ) }>{ title }</Text>
+    <TouchableOpacity style={ [ styles.button, sizeStyle ] } onPress={ action }>
+      <Text style={ [ styles.buttonTitle, colorStyle ] }>{ title }</Text>
     </TouchableOpacity>
   )
 }
@@ -115,7 +107,7 @@ const Card = ( props:CardProps, callerProps:CardCallerProps ): ReactElement => {
       <AnimatedBlurView intensity={ 40 } style={ [ styles.blur, { opacity } ] }>
         <SafeArea>
           <View style={ styles.container }>
-            <View style={ useVP( styles.card ) }>
+            <View style={ styles.card }>
               <Message text={ text } importantText={ importantText } />
               <ButtonBox hide={ hide } action={ action } isAlert={ isAlert } />
             </View>

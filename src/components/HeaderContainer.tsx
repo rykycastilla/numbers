@@ -3,14 +3,13 @@ import ReactElements from '../types/ReactElements'
 import { GAME_BUTTON_SIZE } from '../data/constants.json'
 import { MARGIN } from '../data/styles.json'
 import { StyleSheet, View } from 'react-native'
-import { useVP } from 'react-native-viewport-provider'
 
 interface HeaderContainerProps { children:ReactElements }
 
 const HeaderContainer = ( props:HeaderContainerProps ): ReactElement => {
   const { children } = props
   return (
-    <View style={ useVP( styles.header ) }>
+    <View style={ styles.header }>
       { children }
     </View>
   )
