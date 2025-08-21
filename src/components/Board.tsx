@@ -64,19 +64,16 @@ const Board = ( props:BoardProps ): ReactElement => {
     </View>
   )
 }
-const PARENT_CONTAINER_SIZE = '100vw',
-  CHILD_CONTAINER_SIZE = `${ PARENT_CONTAINER_SIZE } - ${ MARGIN } * 2`
 
 const styles = StyleSheet.create( {
   parentContainer: {
-    width: '100vw' as unknown as number,
-    height: '100vw' as unknown as number,
+    width: '100%',
+    aspectRatio: 1,
   },
   childContainer: {
-    width: CHILD_CONTAINER_SIZE as unknown as number,
-    height: CHILD_CONTAINER_SIZE as unknown as number,
-    marginTop: MARGIN as unknown as number,
-    marginLeft: MARGIN as unknown as number,
+    width: 'auto',
+    height: 'auto',
+    margin: MARGIN,
   },
   pauseWall: {
     width: '100%',
