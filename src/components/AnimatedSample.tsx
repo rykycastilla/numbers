@@ -3,7 +3,7 @@ import sampleColors from '../data/sample_colors.json'
 import useLanguage from '../hooks/language'
 import useSampleAnim from '../hooks/sample_anim'
 import useSamplePosition from '../hooks/sample_position'
-import { Animated, StyleSheet, Text, View } from 'react-native'
+import { Animated, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import { BASE_DARK_COLOR, FONT_SIZE, MARGIN } from '../data/styles.json'
 import { SAMPLE_ITEM_SIZE } from '../data/constants.json'
 
@@ -56,33 +56,34 @@ const ItemsGroup = (): ReactElement => {
 
 const AnimatedSample = (): ReactElement => {
   const language = useLanguage()
+  const { width } = useWindowDimensions()
+  const containerStyle = {
+    width: width - MARGIN * 2,
+    alignItems: 'center' as const,
+  }
   return (
-    <View style={ styles.container }>
+    <View style={ containerStyle }>
       <ItemsGroup />
       <Text style={ styles.instructions }>{ language.gameInstructions }</Text>
     </View>
   )
 }
 
-const ITEMS_GROUP_SIZE = `${ SAMPLE_ITEM_SIZE } * 3 + ${ MARGIN } * 2`
+const ITEMS_GROUP_SIZE = SAMPLE_ITEM_SIZE * 3 + MARGIN * 2
 
 const styles = StyleSheet.create( {
-  container: {
-    width: `100vw - ${ MARGIN } * 2` as unknown as number,
-    alignItems: 'center',
-  },
   itemsGroup: {
-    width: ITEMS_GROUP_SIZE as unknown as number,
-    height: ITEMS_GROUP_SIZE as unknown as number,
+    width: ITEMS_GROUP_SIZE,
+    height: ITEMS_GROUP_SIZE,
   },
   sampleItem: {
-    width: SAMPLE_ITEM_SIZE as unknown as number,
-    height: SAMPLE_ITEM_SIZE as unknown as number,
+    width: SAMPLE_ITEM_SIZE,
+    height: SAMPLE_ITEM_SIZE,
     position: 'absolute',
-    borderRadius: '4vw' as unknown as number,
+    borderRadius: 4,
   },
   instructions: {
-    marginTop: MARGIN as unknown as number,
+    marginTop: MARGIN,
     color: BASE_DARK_COLOR,
     fontSize: FONT_SIZE * 0.83,
     fontFamily: 'Comfortaa-Bold',
