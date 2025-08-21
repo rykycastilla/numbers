@@ -36,10 +36,10 @@ const Item = ( props:ItemProps ): ReactElement => {
 
 const styles = StyleSheet.create( {
   item: {
-    width: ITEM_SIZE as unknown as number,
-    height: ITEM_SIZE as unknown as number,
+    width: ITEM_SIZE,
+    height: ITEM_SIZE,
     position: 'absolute',
-    borderRadius: '5vw' as unknown as number,
+    borderRadius: 15,
   },
   touchableArea: {
     width: '100%',
