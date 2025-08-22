@@ -80,7 +80,7 @@ const styles = StyleSheet.create( {
     width: SAMPLE_ITEM_SIZE,
     height: SAMPLE_ITEM_SIZE,
     position: 'absolute',
-    borderRadius: 4,
+    borderRadius: 12,
   },
   instructions: {
     marginTop: MARGIN,

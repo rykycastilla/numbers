@@ -16,9 +16,9 @@ const StartButton = (): ReactElement => {
 
 const styles = StyleSheet.create( {
   button: {
-    height: 10,
+    padding: 4,
     marginBottom: MARGIN,
-    borderRadius: 3,
+    borderRadius: 8,
     backgroundColor: MAIN_LIGHT_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
