@@ -4,9 +4,8 @@ import DirectionInX from '../types/DirectionInX'
 import MovementFunction from '../types/MovementFunction'
 import wait from '../functions/wait'
 import wobbles from '../interfaces/wobbles'
-import { Animated } from 'react-native'
+import { Animated, useWindowDimensions } from 'react-native'
 import { useCallback, useRef } from 'react'
-import { useDimensions } from 'react-native-viewport-provider'
 
 // Returns a function to move the item to an specific direction (with an animation)
 function useDisplace( animRef:Animated.Value, toValue:number ): MovementFunction {
@@ -58,7 +57,7 @@ function useShake(): ShakeResult {
     }
   }, [] )  // eslint-disable-line
   // Calculating displacement
-  const { width } = useDimensions()
+  const { width } = useWindowDimensions()
   const displacement: number = Math.round( width / 100 * 0.8 )
   // Parsing animation values
   const translate: AnimatedInterpolation = animRef.interpolate( {

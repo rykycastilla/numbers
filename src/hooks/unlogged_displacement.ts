@@ -1,7 +1,6 @@
 import AnimatedInterpolation from '../types/AnimatedInterpolation'
-import { Animated } from 'react-native'
+import { Animated, useWindowDimensions } from 'react-native'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { useDimensions } from 'react-native-viewport-provider'
 
 interface UnloggedDisplacementStyle {
   left: number,
@@ -10,7 +9,7 @@ interface UnloggedDisplacementStyle {
 
 // Show the view from the right to log in (whow automatically if is logged by default)
 function useUnloggedDisplacement( logged:boolean, duration:number ): UnloggedDisplacementStyle {
-  const { width } = useDimensions()
+  const { width } = useWindowDimensions()
   // eslint-disable-next-line
   const initLoggedState: boolean = useMemo( () => logged, [] )  // Saving first login value
   const left: number = initLoggedState ? 0 : width
