@@ -1,7 +1,8 @@
 import AnimatedInterpolation from '../types/AnimatedInterpolation'
-import useItemSize from './item_size'
 import { Animated } from 'react-native'
 import { GAME_VIEW_DISPLACEMENT_DURATION } from '../data/constants.json'
+import { ITEM_SIZE } from '../data/constants.json'
+import { MARGIN } from '../data/styles.json'
 import { useEffect, useRef } from 'react'
 
 // Calculates position on the board for an specific axis (showing an animation between changes)
@@ -13,7 +14,7 @@ function useAnimatedPosition( position:number ): AnimatedInterpolation {
   // Building animation values
   const animValue = new Animated.Value( 0 )
   const animRef = useRef( animValue ).current
-  const cell = useItemSize()  // Calculating the cell size
+  const cell = ITEM_SIZE + MARGIN  // Calculating the cell size
   // Running animation
   useEffect( () => {
     const animation = Animated.timing( animRef, { toValue, duration, useNativeDriver } )
