@@ -1,5 +1,4 @@
 import AnimatedBlurView from './AnimatedBlurView'
-import CardButtonType from '../enums/CardButtonType'
 import CreateSwitchable, { HideFunction, useHiding } from 'react-component-switcher'
 import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
@@ -41,21 +40,16 @@ interface ButtonProps {
   title: string,
   solid: boolean,
   action: FunctionVoid,
-  size: CardButtonType,
 }
 
 const Button = ( props:ButtonProps ): ReactElement => {  // eslint-disable-line
-  const { title, solid, action, size } = props
+  const { title, solid, action } = props
   // Creating color scheme of the button: show text with color or background with color
-  const backgroundColor: string = solid ? MAIN_LIGHT_COLOR : BASE_LIGHT_COLOR
+  const backgroundColor: string | undefined = solid ? MAIN_LIGHT_COLOR : undefined
   const color: string = solid ? BASE_LIGHT_COLOR : MAIN_LIGHT_COLOR
   const colorStyle = { backgroundColor, color }
-  // Setting button size (based on its type)
-  let sizeStyle = {}
-  if( size === CardButtonType.MIDDLE ) { sizeStyle = styles.middleButtonWidth }
-  else if( size === CardButtonType.FULL ) { sizeStyle = styles.fullButtonWidth }
   return (
-    <TouchableOpacity style={ [ styles.button, sizeStyle ] } onPress={ action }>
+    <TouchableOpacity style={ styles.button } onPress={ action }>
       <Text style={ [ styles.buttonTitle, colorStyle ] }>{ title }</Text>
     </TouchableOpacity>
   )
@@ -70,13 +64,12 @@ interface ButtonBoxProps {
 // Control buttons of the card
 const ButtonBox = ( props:ButtonBoxProps ): ReactElement => {  // eslint-disable-line
   const { hide, action, isAlert } = props
-  const acceptButtonSize: CardButtonType = isAlert ? CardButtonType.FULL : CardButtonType.MIDDLE
   const language = useLanguage()
   return (
     <View style={ styles.buttonBox }>
       { /* Only show "Cancel Button" if it is not an alert card */ }
-      { isAlert ? <></> : <Button title={ language.cancel } solid={ false } action={ hide } size={ CardButtonType.MIDDLE } /> }
-      <Button title={ language.accept } solid={ true } size={ acceptButtonSize } action={ () => executeAndExit( hide, action ) } />
+      { isAlert ? <></> : <Button title={ language.cancel } solid={ false } action={ hide } /> }
+      <Button title={ language.accept } solid={ true } action={ () => executeAndExit( hide, action ) } />
     </View>
   )
 }
@@ -130,8 +123,10 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   card: {
-    width: '100%',
-    marginBottom: MARGIN,
+    position: 'absolute',
+    left: MARGIN,
+    right: MARGIN,
+    bottom: MARGIN,
     borderRadius: 15,
     backgroundColor: BASE_LIGHT_COLOR,
     shadowColor: 'black',
@@ -146,6 +141,7 @@ const styles = StyleSheet.create( {
     marginRight: MARGIN,
     marginBottom: MARGIN * 2,
     color: BASE_DARK_COLOR,
+    textAlign: 'center',
     fontFamily: 'Comfortaa',
     fontSize: FONT_SIZE,
   },
@@ -155,16 +151,18 @@ const styles = StyleSheet.create( {
   },
   button: {
     height: FONT_SIZE * 2.15,
-    marginLeft: MARGIN,
+    minWidth: 0,
     marginBottom: MARGIN,
+    marginHorizontal: MARGIN / 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   middleButtonWidth: {
-    width: 100,
+    flex: 1,
   },
   fullButtonWidth: {
-    width: 100,
+    flex: 1,
   },
   buttonTitle: {
     width: '100%',
@@ -178,6 +176,7 @@ const styles = StyleSheet.create( {
   buttonBox: {
     width: '100%',
     flexDirection: 'row',
+    paddingHorizontal: MARGIN / 2,
   },
 } )
 
