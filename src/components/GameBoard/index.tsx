@@ -1,14 +1,15 @@
-import doublePopAction from '../../assets/audio/double_pop_action.mp3'
-import Item from './Item'
-import ItemData from '../classes/Item'
-import MovementFunction from '../types/MovementFunction'
-import popAction from '../../assets/audio/pop_action.mp3'
+import doublePopAction from '../../../assets/audio/double_pop_action.mp3'
+import Item from './components/Item'
+import ItemData from '../../classes/Item'
+import MovementFunction from '../../types/MovementFunction'
+import popAction from '../../../assets/audio/pop_action.mp3'
 import React, { ReactElement } from 'react'
-import useRequestMoveCallback from '../hooks/request_move_callback'
-import useSound from '../hooks/sound'
-import useWinChecking from '../hooks/win_checking'
-import { GoFunction } from '../hooks/items_manager'
-import { MARGIN } from '../data/styles.json'
+import useRequestMoveCallback from '../../hooks/request_move_callback'
+import useSound from '../../hooks/sound'
+import useWinChecking from '../../hooks/win_checking'
+import { GameCanvasProvider } from '../../contexts/game_canvas'
+import { GoFunction } from '../../hooks/items_manager'
+import { MARGIN } from '../../data/styles.json'
 import { StyleSheet, View } from 'react-native'
 
 /*
@@ -55,25 +56,30 @@ const Board = ( props:BoardProps ): ReactElement => {
   const { play, items, go, random } = props
   useWinChecking( items, random )  // Used to win
   return (
-    <View style={ styles.parentContainer }>
+    <>
       <View style={ styles.childContainer }>
         <ItemsList items={ items } go={ go } />
       </View>
       { /* Is used a wall to stop interaction with the board when the game is paused */ }
       { play ? <></> : <View style={ styles.pauseWall } /> }
-    </View>
+    </>
+  )
+}
+
+type GameBoardProps = BoardProps
+
+const GameBoard = ( props:GameBoardProps ): ReactElement => {
+  return (
+    <GameCanvasProvider width="100%">
+      <Board { ...props } />
+    </GameCanvasProvider>
   )
 }
 
 const styles = StyleSheet.create( {
-  parentContainer: {
-    width: '100%',
-    aspectRatio: 1,
-  },
   childContainer: {
-    width: 'auto',
-    height: 'auto',
     margin: MARGIN,
+    flex: 1,
   },
   pauseWall: {
     width: '100%',
@@ -83,4 +89,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default Board
+export default GameBoard

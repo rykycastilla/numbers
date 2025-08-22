@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import useAnimatedPosition from '../hooks/animated_position'
-import useShake from '../hooks/shake'
+import useShake from '../../../hooks/shake'
 import { Animated, Pressable, StyleSheet, Text } from 'react-native'
-import { BASE_LIGHT_COLOR, FONT_SIZE } from '../data/styles.json'
-import { ITEM_SIZE } from '../data/constants.json'
-import { RequestMoveCallback } from '../hooks/request_move_callback'
+import { BASE_LIGHT_COLOR, FONT_SIZE } from '../../../data/styles.json'
+import { RequestMoveCallback } from '../../../hooks/request_move_callback'
+import { useItemSize } from '../../../contexts/game_canvas'
 
 interface ItemProps {
   tag: number,
@@ -25,8 +25,9 @@ const Item = ( props:ItemProps ): ReactElement => {
   const shakePosition = { translateX: translate },
     transform = [ { translateX }, { translateY }, shakePosition ],
     position = { transform }
+  const size = useItemSize()
   return (
-    <Animated.View style={ [ styles.item, { backgroundColor }, position as any ] }>
+    <Animated.View style={ [ styles.item, { backgroundColor, width:size, height:size }, position as any ] }>
       <Pressable style={ styles.touchableArea } onPress={ () => requestMove( tag, shake ) }>
         <Text style={ styles.tag }>{ tag }</Text>
       </Pressable>
@@ -36,10 +37,8 @@ const Item = ( props:ItemProps ): ReactElement => {
 
 const styles = StyleSheet.create( {
   item: {
-    width: ITEM_SIZE,
-    height: ITEM_SIZE,
     position: 'absolute',
-    borderRadius: 15,
+    borderRadius: 21,
   },
   touchableArea: {
     width: '100%',

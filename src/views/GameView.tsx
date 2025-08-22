@@ -1,5 +1,5 @@
-import Board from '../components/Board'
 import Card from '../components/Card'
+import GameBoard from '../components/GameBoard'
 import GameContainer from '../components/GameContainer'
 import HeaderContainer from '../components/HeaderContainer'
 import PauseButton from '../components/PauseButton'
@@ -35,7 +35,7 @@ const GameView = (): ReactElement => {
             <PauseButton play={ gameRunning } setPlay={ setGameRunning } />
             <RandomButton random={ random } />
           </HeaderContainer>
-          <Board play={ gameRunning } items={ items } go={ go } random={ random } />
+          <GameBoard play={ gameRunning } items={ items } go={ go } random={ random } />
           <Timer count={ gameRunning } />
         </GameContainer>
       </SafeArea>
