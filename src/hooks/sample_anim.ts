@@ -3,17 +3,13 @@ import { Animated } from 'react-native'
 import { MARGIN } from '../data/styles.json'
 import { SAMPLE_ITEM_SIZE } from '../data/constants.json'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useVP } from 'react-native-viewport-provider'
 
 function useSampleAnim( animated:boolean ): AnimatedInterpolation {
   const duration = 500,
     lapse = 1500,
     useNativeDriver = false
   // Movement value
-  const position = {
-    left: `${ SAMPLE_ITEM_SIZE } + ${ MARGIN }`,
-  }
-  const { left } = useVP( position ) as { left:number }  // Calculating viewport values
+  const left: number = SAMPLE_ITEM_SIZE + MARGIN
   const animationValue = new Animated.Value( 0 )
   const animationRef = useRef( animationValue ).current
   // Creating animation
