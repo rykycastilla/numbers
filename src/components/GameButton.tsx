@@ -1,6 +1,7 @@
 import FunctionVoid from '../types/FunctionVoid'
 import React, { ReactElement } from 'react'
 import { GAME_BUTTON_SIZE } from '../data/constants.json'
+import { MARGIN } from '../data/styles.json'
 import { Image, ImageURISource, StyleSheet, TouchableOpacity } from 'react-native'
 
 interface GameButtonProps {
@@ -21,6 +22,7 @@ const styles = StyleSheet.create( {
   gameButton: {
     width: GAME_BUTTON_SIZE,
     height: GAME_BUTTON_SIZE,
+    margin: MARGIN,
   },
   picture: {
     width: '100%',
