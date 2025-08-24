@@ -61,7 +61,7 @@ const Board = ( props:BoardProps ): ReactElement => {
         <ItemsList items={ items } go={ go } />
       </View>
       { /* Is used a wall to stop interaction with the board when the game is paused */ }
-      { play ? <></> : <View style={ styles.pauseWall } /> }
+      { play ? <></> : <View pointerEvents="auto" onStartShouldSetResponder={ () => true } style={ styles.pauseWall } /> }
     </>
   )
 }
